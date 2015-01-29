@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:background="#00000000"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <RelativeLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="8dp">
+            <RelativeLayout
+                android:id="@+id/dday_ll1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="4dp"
+                android:layout_marginBottom="50dp"
+                android:padding="10dp"
+                android:background="#004c99">
+                <TextView
+                    android:id="@+id/dday_txt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="15dp"
+                    android:textSize="80sp"
+                    android:textColor="#66eeeeee"
+                    android:text="수능"/>
+                <TextView
+                    android:id="@+id/dday_txt_sat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="80sp"
+                    android:textColor="#eeeeee"
+                    android:text="D-30"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/dday_ll2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:elevation="4dp"
+                android:layout_marginBottom="4dp"
+                android:layout_below="@id/dday_ll1"
+                android:padding="10dp"
+                android:background="#004c99">
+                <TextView
+                    android:id="@+id/dday_txt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="15dp"
+                    android:textSize="80sp"
+                    android:textColor="#66eeeeee"
+                    android:text="내신"/>
+                <TextView
+                    android:id="@+id/dday_txt_test"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:textSize="80sp"
+                    android:textColor="#eeeeee"
+                    android:text="D-57"/>
+            </RelativeLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>
