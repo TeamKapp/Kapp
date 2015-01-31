@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import lib.Meallib;
+import lib.netload;
 
 @SuppressLint("SdCardPath")
 public class RiceFragment extends Fragment implements View.OnClickListener{
@@ -34,7 +35,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
     static boolean ran = false;
 
     private static final int SWIPE_MIN_DISTANCE = 120;
-    private static final int SWIPE_MAX_OFF_PATH = 250;
+    private static final int SWIPE_에이MAX_OFF_PATH = 250;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
     int pd = cal.get(Calendar.DATE);
     private int mShortAnimationDuration;
@@ -120,7 +121,9 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
 
     }
     String taskstartmanager(int mtime, int mdate) {
-        if (!ran && Checknetwork()) {// 네트워크 체크
+        Context ct = getActivity();
+        netload nl =new netload();
+        if (!ran && nl.Checknetwork(ct)) {// 네트워크 체크
             Meallib ml = new Meallib(address);
             ml.start();
             try { ml.join();// 불러옴을 확인
@@ -225,22 +228,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
                 return 31;
         }
     }
-    public Boolean Checknetwork() {
-        ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-        NetworkInfo mobile = manager
-                .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-        NetworkInfo wifi = manager
-                .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        NetworkInfo lte_4g = manager
-                .getNetworkInfo(ConnectivityManager.TYPE_WIMAX);
-        boolean blte_4g = false;
-        if (lte_4g != null)
-            blte_4g = (lte_4g.isConnected()&&lte_4g.isAvailable());
-        if ((mobile.isConnected()&&mobile.isAvailable()) || (wifi.isConnected()&&wifi.isAvailable()) || blte_4g)
-            return true;
-        else {
-            return false;}
-    }
+
     private void CF_dateon() {
         seedaterice.setAlpha(0f);
         seedaterice.setVisibility(View.VISIBLE);

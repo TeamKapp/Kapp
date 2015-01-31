@@ -19,4 +19,19 @@
         android:text="2015-1-1"
         android:textSize="14sp"
         android:textColor="#B3000000"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/notice_date_txt"
+        >
+        <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+            <ListView
+                android:id="@+id/notice_menu"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent" />
+        </ScrollView>
+    </LinearLayout>
 </RelativeLayout>

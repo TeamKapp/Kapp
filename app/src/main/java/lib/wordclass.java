@@ -98,35 +98,5 @@ public class wordclass extends Thread {// 사용법: word[]와 mean[]에 각각 
         return parsed;
     }
 
-    protected String loadhtml(String addr) {
-        StringBuffer Html = new StringBuffer();// 파싱 이전 Html 문서
-        try {
-            URL url = new URL(addr);
-            HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-            if (conn != null) {
-                conn.setConnectTimeout(5000);
-                conn.setUseCaches(false);
 
-                if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-                    BufferedReader br = new BufferedReader(
-                            new InputStreamReader(conn.getInputStream()));
-
-                    for (; ; ) {
-                        String line = br.readLine();
-
-                        if (line == null) {
-                            break;
-                        }
-                        Html.append(line + '\n');// Html에 문서내용을 추가.
-                    }
-                    br.close();
-                }
-                conn.disconnect();
-            }
-            // Html 불러오기 완료
-            return Html.toString();
-        } catch (Exception e) {
-            return null;
-        }
-    }
 }

@@ -1,9 +1,5 @@
 package lib;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,42 +15,12 @@ public class Meallib extends Thread {
 	}
 
 	public void run() {
-		html = loadhtml();
+        netload nl = new netload();
+		html = nl.loadhtml(address);
 		mealparseauto();
 	}
 
-	protected String loadhtml() {// 주소
-									// http://hes.cne.go.kr/sts_sci_md01_003.do?schulCode=N100000131&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=1
-		StringBuffer Html = new StringBuffer();// 파싱 이전 Html 문서
-		try {
-			URL url = new URL(address);
-			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-			if (conn != null) {
-				conn.setConnectTimeout(5000);
-				conn.setUseCaches(false);
 
-				if (conn.getResponseCode() == HttpURLConnection.HTTP_OK) {
-					BufferedReader br = new BufferedReader(
-							new InputStreamReader(conn.getInputStream()));
-
-					for (;;) {
-						String line = br.readLine();
-
-						if (line == null) {
-							break;
-						}
-						Html.append(line + '\n');// Html에 문서내용을 추가.
-					}
-					br.close();
-				}
-				conn.disconnect();
-			}
-			// Html 불러오기 완료
-			return Html.toString();
-		} catch (Exception 로드가앙대) {
-			return null;
-		}
-	}
 
 	static void mealparseauto() {// 이거시 바로 주소만 넣으면 알아서 주간급식인지 월간급식인지 판별하는
 									String[] tokens = address.split("\\_");

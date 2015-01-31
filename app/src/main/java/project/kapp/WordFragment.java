@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import lib.netload;
 import lib.wordclass;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -73,10 +75,13 @@ public class WordFragment extends Fragment {
         }
 
         public void run() {// 그래그래
-            Boolean cn = checkNetwork();
+            netload nl = new netload();
+            Context ct = getActivity();
+            Boolean cn = nl.Checknetwork(ct);
 
+            netload nw = new netload();
             if (cn) {
-                String html = loadhtml(url);
+                String html = nw.loadhtml(url);
                 if (checkwordnull(html)) {
                     word = wordparse(html);
                     mean = meanparse(html);
@@ -102,23 +107,7 @@ public class WordFragment extends Fragment {
 
         }
 
-        private boolean checkNetwork() {
-            ConnectivityManager manager = (ConnectivityManager) getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo mobile = manager
-                    .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-            NetworkInfo wifi = manager
-                    .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-            NetworkInfo lte_4g = manager
-                    .getNetworkInfo(ConnectivityManager.TYPE_WIMAX);
-            boolean blte_4g = false;
-            if (lte_4g != null)
-                blte_4g = lte_4g.isConnected();
-            if (mobile.isConnected() || wifi.isConnected() || blte_4g)
-                return true;
-            else {
-                return false;
-            }
-        }
+
 
     }
 }

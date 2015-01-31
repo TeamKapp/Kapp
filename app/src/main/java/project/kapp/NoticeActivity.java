@@ -4,9 +4,11 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
 
 
 public class NoticeActivity extends ActionBarActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
