@@ -67,8 +67,9 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
 
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
-        taskstartmanager(1,1);
+        taskstartmanager(1,1,cal.get(Calendar.MONTH)+1);
         outputmanage(pd);
+
 
         /*Button yest = (Button) view.findViewById(R.id.rice_yesterday);
         yest.setOnClickListener(new View.OnClickListener() {
@@ -109,20 +110,20 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
     }
     void outputmanage(int date) {
         tv = (TextView) view.findViewById(R.id.rice_mor_txt);
-        tv.setText(taskstartmanager(0,date).replace('\n', ' '));
+        tv.setText(taskstartmanager(0,date,cal.get(Calendar.MONTH)+1).replace('\n', ' '));
 
         tv = (TextView) view.findViewById(R.id.rice_lau_txt);
-        tv.setText(taskstartmanager(1,date).replace('\n', ' '));
+        tv.setText(taskstartmanager(1,date,cal.get(Calendar.MONTH)+1).replace('\n', ' '));
 
         tv = (TextView) view.findViewById(R.id.rice_din_txt);
-        tv.setText(taskstartmanager(2,date).replace('\n', ' '));
+        tv.setText(taskstartmanager(2,date,cal.get(Calendar.MONTH)+1).replace('\n', ' '));
 
     }
-    String taskstartmanager(int mtime, int mdate) {
+    String taskstartmanager(int mtime, int mdate, int today) {
         Context ct = getActivity();
         netload nl =new netload();
         if (!ran && nl.Checknetwork(ct)) {// 네트워크 체크
-            Meallib ml = new Meallib(address);
+            Meallib ml = new Meallib(address+"&schYm=2014."+today);
             ml.start();
             try { ml.join();// 불러옴을 확인
             }
@@ -141,7 +142,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
             }
             for (int i = 0; i < 3; i++) {// 파일로 저장
                 for (int j = 1; j < yoon()+3; j++) {
-                    File f = new File(kongjugopath + i + "," + j + "일" + ".txt");
+                    File f = new File(kongjugopath + i + "," + today + "월"+ j + "일" + ".txt");
                     try {
                         fw = new FileWriter(f);
                         fw.write(Meallib.parsed[i][j]);
