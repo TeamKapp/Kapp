@@ -4,6 +4,8 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import project.kapp.RiceFragment;
+
 public class Meallib extends Thread {
 	static String address;
 	static String html;
@@ -75,16 +77,17 @@ public class Meallib extends Thread {
 		Pattern afte = Pattern.compile("\\[중식\\]", Pattern.CASE_INSENSITIVE);
 		Pattern morn = Pattern.compile("\\[조식\\]", Pattern.CASE_INSENSITIVE);
 		Matcher regexMatcher;
+        RiceFragment rf = new RiceFragment();
 
 		for (int i = 0; i <= 2; i++)
 			st.nextToken();
 
 		
 		
-		for (int i = 1; i < 32; i++) {
+		for (int i = 1; i < rf.yoon()+3; i++) {
 
 			sb.delete(0, sb.length());
-			regexMatcher = even.matcher(sb.append(st.nextToken()).toString());
+			regexMatcher = even.matcher(sb./*append(st.nextToken()).*/toString());
 			int j = sb.length();
 			
 			if (regexMatcher.find()){

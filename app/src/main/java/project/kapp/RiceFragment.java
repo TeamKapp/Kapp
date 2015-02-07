@@ -2,8 +2,6 @@ package project.kapp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.GestureDetector;
@@ -28,10 +26,10 @@ import lib.netload;
 public class RiceFragment extends Fragment implements View.OnClickListener{
 
     String address = "http://hes.cne.go.kr/sts_sci_md00_003.do?schulCode=N100000131&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=0";
-    String sdcardpath = "/sdcard/大Kongjugoapp/";
+    String kongjugopath = "/sdcard/大Kongjugoapp/";
 
     Calendar cal = Calendar.getInstance();
-    File dir = new File(sdcardpath);
+    File dir = new File(kongjugopath);
     static boolean ran = false;
 
     private static final int SWIPE_MIN_DISTANCE = 120;
@@ -131,7 +129,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
             catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            File d = new File(sdcardpath + "nowday.txt");// 날짜데이터
+            File d = new File(kongjugopath + "nowday.txt");// 날짜데이터
             FileWriter fw;
             try {
                 fw = new FileWriter(d);
@@ -142,8 +140,8 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
                 e.printStackTrace();
             }
             for (int i = 0; i < 3; i++) {// 파일로 저장
-                for (int j = 1; j < 32; j++) {
-                    File f = new File(sdcardpath + i + "," + j + "일" + ".txt");
+                for (int j = 1; j < yoon()+3; j++) {
+                    File f = new File(kongjugopath + i + "," + j + "일" + ".txt");
                     try {
                         fw = new FileWriter(f);
                         fw.write(Meallib.parsed[i][j]);
@@ -160,7 +158,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
         else {// 네트워크 문제
             StringBuffer sb = new StringBuffer();
             try {// 저장일시 읽어들이기
-                FileInputStream fis = new FileInputStream(sdcardpath + "nowday.txt");
+                FileInputStream fis = new FileInputStream(kongjugopath + "nowday.txt");
                 int n;
                 while ((n = fis.available()) > 0) {
                     byte b[] = new byte[n];
@@ -171,7 +169,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
                 fis.close();
             }
             catch (FileNotFoundException e) {
-                System.err.println("Could not find file" + sdcardpath + "nowday.txt");
+                System.err.println("Could not find file" + kongjugopath + "nowday.txt");
             }
             catch (IOException e) {
                 e.printStackTrace();
@@ -182,7 +180,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
 
                 sb.delete(0, sb.length());
                 try {// 저장일시 읽어들이기
-                    FileInputStream fis = new FileInputStream(sdcardpath + mtime + "," + mdate + "일" + ".txt");
+                    FileInputStream fis = new FileInputStream(kongjugopath + mtime + "," + mdate + "일" + ".txt");
                     int n;
                     while ((n = fis.available()) > 0) {
                         byte b[] = new byte[n];
@@ -192,7 +190,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
                     }
                     fis.close();
                 } catch (FileNotFoundException e) {
-                    System.err.println("Could not find file" + sdcardpath + "nowday.txt");
+                    System.err.println("Could not find file" + kongjugopath + "nowday.txt");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -204,7 +202,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
             }
         }
     }
-    protected int yoon() {
+    public int yoon() {
         int thisyear = cal.get(Calendar.YEAR);
         int feb;
         if ((thisyear % 4 == 0) && (thisyear % 100 != 0)
