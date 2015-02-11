@@ -15,20 +15,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:background="#b3eeeeee"
+            android:background="@drawable/d_whitebox"
             android:layout_weight="1">
             <LinearLayout
                 android:id="@+id/rice_ll1"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#004c99">
+                android:background="@drawable/d_bluebox">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:text="아침"
-                    android:textSize="18dp"
+                    android:textSize="16sp"
                     android:textColor="#eeeeee"
                     android:padding="16dp"/>
             </LinearLayout>
@@ -47,20 +47,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:background="#b3eeeeee"
+            android:background="@drawable/d_whitebox"
             android:layout_weight="1">
             <LinearLayout
                 android:id="@+id/rice_ll2"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#004c99">
+                android:background="@drawable/d_bluebox">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:text="점심"
-                    android:textSize="18dp"
+                    android:textSize="16sp"
                     android:textColor="#eeeeee"
                     android:padding="16dp"/>
             </LinearLayout>
@@ -79,20 +79,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:background="#b3eeeeee"
+            android:background="@drawable/d_whitebox"
             android:layout_weight="1">
             <LinearLayout
                 android:id="@+id/rice_ll3"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#004c99">
+                android:background="@drawable/d_bluebox">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:text="저녁"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     android:textColor="#eeeeee"
                     android:padding="16dp"/>
             </LinearLayout>

@@ -16,10 +16,9 @@
                 android:id="@+id/dday_ll1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="4dp"
                 android:layout_marginBottom="50dp"
                 android:padding="10dp"
-                android:background="#004c99">
+                android:background="@drawable/d_bluebox">
                 <TextView
                     android:id="@+id/dday_txt1"
                     android:layout_width="wrap_content"
@@ -43,11 +42,10 @@
                 android:id="@+id/dday_ll2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:elevation="4dp"
                 android:layout_marginBottom="4dp"
                 android:layout_below="@id/dday_ll1"
                 android:padding="10dp"
-                android:background="#004c99">
+                android:background="@drawable/d_bluebox">
                 <TextView
                     android:id="@+id/dday_txt2"
                     android:layout_width="wrap_content"
