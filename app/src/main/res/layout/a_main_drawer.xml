@@ -52,7 +52,7 @@
             android:padding="16dp"
             android:gravity="start"
             android:background="#eeeeee"
-            android:text="단어"
+            android:text="D-day"
             android:textColor="#000000"
             android:textSize="16dp"/>
         <Button
