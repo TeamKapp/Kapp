@@ -246,4 +246,6 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
 
         return f;
     }
+
+
 }

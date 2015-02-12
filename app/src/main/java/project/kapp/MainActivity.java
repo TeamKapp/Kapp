@@ -1,50 +1,59 @@
 package project.kapp;
 
-import android.app.ActionBar;
+import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.view.ViewPager;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
-public class MainActivity extends ActionBarActivity{
+public class MainActivity extends ActionBarActivity {
+
+    Toolbar toolbar;
+    DrawerLayout drawerLayout;
+    ActionBarDrawerToggle toggle;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.a_main);
 
-        ActionBar actionBar = getActionBar();
+        toolbar = (Toolbar)findViewById(R.id.toolBar);
+        setSupportActionBar(toolbar);
+        drawerLayout = (DrawerLayout)findViewById(R.id.drawerlayout);
 
-        ViewPager pager = (ViewPager) findViewById(R.id.pager);
-        pager.setAdapter(new MainSlideAdapter(getSupportFragmentManager()));
-
+        toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name, R.string.app_name);
+        drawerLayout.setDrawerListener(toggle);
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = new MenuInflater(this);
+        inflater.inflate(R.menu.menu_main,menu);
+        return true;
     }
 
-    public static class MainSlideAdapter extends FragmentPagerAdapter {
+    @Override
+    protected void onPostCreate(Bundle savedInstanceState) {
+        super.onPostCreate(savedInstanceState);
 
-        public MainSlideAdapter(FragmentManager fm) {
-            super(fm);
+// Sync the toggle state after onRestoreInstanceState has occurred.
+        toggle.syncState();
+    }
+
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        toggle.onConfigurationChanged(newConfig);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (toggle.onOptionsItemSelected(item)) {
+            return true;
         }
 
-        @Override
-        public int getCount() {
-            return 4;
-        }
-
-        public Fragment getItem(int position) {
-            switch (position) {
-                case 0:
-                    return RiceFragment.newInstance(position);
-                case 1:
-                    return TimetableFragment.newInstance(position);
-                case 2:
-                    return DdayFragment.newInstance(position);
-                case 3:
-                    return WordFragment.newInstance(position);
-                default:
-                    return null;
-            }
-        }
+        return super.onOptionsItemSelected(item);
     }
 }
