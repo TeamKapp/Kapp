@@ -21,6 +21,10 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     ActionBarDrawerToggle toggle;
     FragmentTransaction ft;
     FragmentManager fm;
+    private RiceFragment riceFragment = new RiceFragment();
+    private TimetableFragment timetableFragment = new TimetableFragment();
+    private DdayFragment ddayFragment = new DdayFragment();
+    private WordFragment wordFragment = new WordFragment();
 
     RelativeLayout rl_drawer;
 
@@ -72,19 +76,15 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         ft = getSupportFragmentManager().beginTransaction();
         switch (v.getId()){
             case R.id.btn1:
-                RiceFragment riceFragment = new RiceFragment();
                 ft.replace(R.id.container, riceFragment);
                 break;
             case R.id.btn2:
-                TimetableFragment timetableFragment = new TimetableFragment();
                 ft.replace(R.id.container, timetableFragment);
                 break;
             case R.id.btn3:
-                DdayFragment ddayFragment = new DdayFragment();
                 ft.replace(R.id.container, ddayFragment);
                 break;
             case R.id.btn4:
-                WordFragment wordFragment = new WordFragment();
                 ft.replace(R.id.container, wordFragment);
                 break;
 
