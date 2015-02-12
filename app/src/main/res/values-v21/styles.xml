@@ -9,7 +9,7 @@
         <item name="colorPrimary">@color/blue</item>
         <item name="colorPrimaryDark">#b31A237E</item>
         <item name="android:navigationBarColor">@color/blue</item>
-        <item name="colorControlHighlight">#00CC55</item>
+        <item name="colorControlHighlight">#ffffff</item>
         <item name="colorControlNormal">#eeeeee</item>
 
     </style>

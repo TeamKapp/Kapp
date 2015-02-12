@@ -1,15 +1,15 @@
 <resources>
 
-    <color name="blue">#2196F3</color>
-    <color name="dblue">#1976D2</color>
+    <color name="blue">#004c99</color>
+    <color name="dblue">#1A237E</color>
     <color name="ddblue">#1976D2</color>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorAccent">#FF4081</item>
         <item name="colorPrimary">@color/blue</item>
-        <item name="colorPrimaryDark">@color/ddblue</item>
+        <item name="colorPrimaryDark">#b31A237E</item>
         <item name="colorControlHighlight">#00CC55</item>
-        <item name="colorControlNormal">#FF0000</item>
+        <item name="colorControlNormal">#eeeeee</item>
 
     </style>
 

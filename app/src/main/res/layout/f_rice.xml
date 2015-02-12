@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
     <LinearLayout
         android:id="@+id/rice_container"
         android:layout_width="match_parent"
@@ -15,134 +16,109 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/d_whitebox"
+            android:background="#dcdcdc"
+            android:elevation="2dp"
             android:layout_weight="1">
             <LinearLayout
                 android:id="@+id/rice_ll1"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/d_bluebox">
+                android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:text="아침"
                     android:textSize="16sp"
-                    android:textColor="#eeeeee"
-                    android:padding="16dp"/>
+                    android:textStyle="bold"
+                    android:textColor="#262626"
+                    android:padding="12dp"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/rice_mor_txt"
                 android:layout_below="@id/rice_ll1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginBottom="4dp"
                 android:padding="16dp"
                 android:gravity="center"
+                android:background="#eeeeee"
                 android:textSize="14sp"
-                android:textColor="#000000"
-                android:text="로딩중입니다."/>
+                android:textColor="#515151"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/d_whitebox"
+            android:background="#dcdcdc"
+            android:elevation="2dp"
             android:layout_weight="1">
             <LinearLayout
                 android:id="@+id/rice_ll2"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/d_bluebox">
+                android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:text="점심"
                     android:textSize="16sp"
-                    android:textColor="#eeeeee"
-                    android:padding="16dp"/>
+                    android:textStyle="bold"
+                    android:textColor="#262626"
+                    android:padding="12dp"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/rice_lau_txt"
                 android:layout_below="@id/rice_ll2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginBottom="4dp"
                 android:padding="16dp"
                 android:gravity="center"
+                android:background="#eeeeee"
                 android:textSize="14sp"
-                android:textColor="#000000"
-                android:text="로딩중입니다."/>
+                android:textColor="#515151"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:background="@drawable/d_whitebox"
+            android:background="#dcdcdc"
+            android:elevation="2dp"
             android:layout_weight="1">
             <LinearLayout
                 android:id="@+id/rice_ll3"
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/d_bluebox">
+                android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="4dp"
                     android:text="저녁"
                     android:textSize="16sp"
-                    android:textColor="#eeeeee"
-                    android:padding="16dp"/>
+                    android:textStyle="bold"
+                    android:textColor="#262626"
+                    android:padding="12dp"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/rice_din_txt"
                 android:layout_below="@id/rice_ll3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginRight="4dp"
+                android:layout_marginLeft="4dp"
+                android:layout_marginBottom="4dp"
                 android:padding="16dp"
                 android:gravity="center"
-                android:text="로딩중입니다."
+                android:background="#eeeeee"
                 android:textSize="14sp"
-                android:textColor="#000000"/>
+                android:textColor="#515151"/>
         </RelativeLayout>
     </LinearLayout>
-
-    <include
-        android:id="@+id/date_rice"
-        layout="@layout/v_notification_crossfade"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
-
-    <LinearLayout
-        android:id="@+id/rice_ll_btns"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#00000000">
-
-        </LinearLayout>
-    <Button
-        android:id="@+id/button"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#00000000"/>
-    <RelativeLayout
-        android:id="@+id/rice_ll_seemore"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="#00000000">
-        <include
-            android:id="@+id/page_rice_seemore"
-            layout="@layout/v_rice_seemore"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="6dp"/>
-        <Button
-            android:id="@+id/btn_rice_exitseemore"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#00000000"/>
-    </RelativeLayout>
-
 </RelativeLayout>

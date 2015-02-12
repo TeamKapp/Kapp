@@ -56,15 +56,6 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
 
         ricedate = (TextView) view.findViewById(R.id.noti_txt);
 
-        seedaterice = (ViewGroup)view.findViewById(R.id.date_rice);
-        seedaterice.setVisibility(view.GONE);
-
-        seemorerice_layout = (RelativeLayout) view.findViewById(R.id.rice_ll_seemore);
-        seemorerice_layout.setVisibility(view.GONE);
-
-        seemoreExitBtn = (Button) view.findViewById(R.id.btn_rice_exitseemore);
-        seemoreExitBtn.setOnClickListener(this);
-
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
 
         taskstartmanager(1,1,cal.get(Calendar.MONTH)+1);
@@ -103,9 +94,6 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
     }
     public void onClick(View view) {
         switch (view.getId()) {
-            case (R.id.btn_rice_exitseemore):
-                seemorerice_layout.setVisibility(view.GONE);
-                break;
         }
     }
     void outputmanage(int date) {
@@ -226,25 +214,6 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
             default:
                 return 31;
         }
-    }
-
-    private void CF_dateon() {
-        seedaterice.setAlpha(0f);
-        seedaterice.setVisibility(View.VISIBLE);
-        seedaterice.animate().alpha(1f).setDuration(mShortAnimationDuration).setListener(null);
-    }
-    private void CF_dateoff() {
-
-    }
-    public static RiceFragment newInstance(int position) {
-
-        RiceFragment f = new RiceFragment();
-        Bundle b = new Bundle();
-        b.putInt("position", position);
-
-        f.setArguments(b);
-
-        return f;
     }
 
 

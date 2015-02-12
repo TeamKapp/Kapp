@@ -3,29 +3,29 @@
     android:id="@+id/drawerlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolBar"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:elevation="4dp"
+            android:minHeight="?attr/actionBarSize"
+            android:background="@color/blue"/>
+        <FrameLayout
+            android:id="@+id/container"
+            android:background="#bababa"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </LinearLayout>
     <include
         layout="@layout/a_main_drawer"
         android:id="@+id/drawer"
         android:layout_width="280dp"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:background="#bababa"/>
-
-    <LinearLayout
-        android:layout_width="match_parent" android:layout_height="match_parent"
-        android:background="#eeeeee" android:orientation="vertical">
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolBar"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:minHeight="?attr/actionBarSize"
-            android:background="@color/blue"/>
-
-        <FrameLayout
-            android:id="@+id/container"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
+        android:layout_gravity="start"/>
 </android.support.v4.widget.DrawerLayout>
 
 

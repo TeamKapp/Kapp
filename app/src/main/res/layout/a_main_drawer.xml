@@ -31,49 +31,49 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:gravity="start"
+            android:background="#eeeeee"
             android:text="급식"
             android:textColor="#000000"
-            android:textSize="16dp"
-            android:background="#eeeeee"/>
+            android:textSize="16dp"/>
         <Button
             android:id="@+id/btn2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:gravity="start"
+            android:background="#eeeeee"
             android:text="시간표"
             android:textColor="#000000"
-            android:textSize="16dp"
-            android:background="#eeeeee"/>
+            android:textSize="16dp"/>
         <Button
             android:id="@+id/btn3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:gravity="start"
+            android:background="#eeeeee"
             android:text="단어"
             android:textColor="#000000"
-            android:textSize="16dp"
-            android:background="#eeeeee"/>
+            android:textSize="16dp"/>
         <Button
             android:id="@+id/btn4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:gravity="start"
-            android:text="시간표"
+            android:background="#eeeeee"
+            android:text="단어장"
             android:textColor="#000000"
-            android:textSize="16dp"
-            android:background="#eeeeee"/>
+            android:textSize="16dp"/>
         <Button
             android:id="@+id/btn5"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:gravity="start"
+            android:background="#eeeeee"
             android:text="공지사항"
             android:textColor="#000000"
-            android:textSize="16dp"
-            android:background="#eeeeee"/>
+            android:textSize="16dp"/>
         </LinearLayout>
 </RelativeLayout>
