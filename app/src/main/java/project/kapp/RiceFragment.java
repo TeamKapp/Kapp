@@ -123,7 +123,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
         Context ct = getActivity();
         netload nl =new netload();
         if (!ran && nl.Checknetwork(ct)) {// 네트워크 체크
-            Meallib ml = new Meallib(address+"&schYm=2014."+today);
+            Meallib ml = new Meallib(address/*+"&schYm=2014."+today*/);
             ml.start();
             try { ml.join();// 불러옴을 확인
             }

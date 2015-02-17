@@ -33,7 +33,7 @@ public class MoreFragment extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         switch (view.getId()) {
             case (R.id.more_notice_btn):
-                Intent intent = new Intent(getActivity(), NoticeActivity.class);
+                Intent intent = new Intent(getActivity(), NoticeFragment.class);
                 startActivity(intent);
                 break;
         }

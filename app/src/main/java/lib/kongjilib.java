@@ -23,6 +23,7 @@ public class kongjilib extends Thread {
 
 	public void run() {
 		autosetAddress();
+
 	}
 
 	protected String loadhtml(String Url) {

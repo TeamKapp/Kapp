@@ -25,7 +25,7 @@ public class Meallib extends Thread {
 
 
 	static void mealparseauto() {// 이거시 바로 주소만 넣으면 알아서 주간급식인지 월간급식인지 판별하는
-									String[] tokens = address.split("\\_");
+    	String[] tokens = address.split("\\_");
 		String ret = tokens[2];
 		if (ret.equals("md01")) {// 주간급식
 			Mealparseweek();
@@ -71,9 +71,9 @@ public class Meallib extends Thread {
 
 		StringTokenizer st = new StringTokenizer(html, "\\#\\$\\!");
 
-		String[][] parsed = new String[3][32];
-		StringBuffer sb = new StringBuffer();
-		Pattern even = Pattern.compile("\\[석식\\]", Pattern.CASE_INSENSITIVE);
+		String[][] parsed = new String[3][32];//결과물
+		StringBuffer sb = new StringBuffer();//보이는데로
+		Pattern even = Pattern.compile("\\[석식\\]", Pattern.CASE_INSENSITIVE);//오류 방지를 위해
 		Pattern afte = Pattern.compile("\\[중식\\]", Pattern.CASE_INSENSITIVE);
 		Pattern morn = Pattern.compile("\\[조식\\]", Pattern.CASE_INSENSITIVE);
 		Matcher regexMatcher;
@@ -84,10 +84,10 @@ public class Meallib extends Thread {
 
 		
 		
-		for (int i = 1; i < rf.yoon()+3; i++) {
+		for (int i = 1; i < rf.yoon()+1; i++) {
 
 			sb.delete(0, sb.length());
-			regexMatcher = even.matcher(sb./*append(st.nextToken()).*/toString());
+			regexMatcher = even.matcher(sb.append(st.nextToken()).toString());
 			int j = sb.length();
 			
 			if (regexMatcher.find()){
