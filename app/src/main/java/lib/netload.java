@@ -17,6 +17,12 @@ public class netload {
     }
     public String loadhtml(String address) {// 주소
         // http://hes.cne.go.kr/sts_sci_md01_003.do?schulCode=N100000131&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=1
+        return loadweb(address, null);
+    }
+    public String loadhtml_tag(String address){
+        return loadweb(address, "</html>");
+    }
+    String loadweb(String address, String tag){
         StringBuffer Html = new StringBuffer();// 파싱 이전 Html 문서
         try {
             URL url = new URL(address);
@@ -32,7 +38,7 @@ public class netload {
                     for (;;) {
                         String line = br.readLine();
 
-                        if (line == null) {
+                        if (line == tag) {
                             break;
                         }
                         Html.append(line + '\n');// Html에 문서내용을 추가.
