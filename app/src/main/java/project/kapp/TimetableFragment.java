@@ -200,15 +200,5 @@ public class TimetableFragment extends Fragment {
         public void onCreate(SQLiteDatabase db) {}
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {}
     }
-
-    public static TimetableFragment newInstance(int position) {
-
-        TimetableFragment f = new TimetableFragment();
-        Bundle b = new Bundle();
-        b.putInt("position", position);
-
-        f.setArguments(b);
-
-        return f;
-    }
 }
+

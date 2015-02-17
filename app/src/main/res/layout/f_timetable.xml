@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:layout_width="match_parent">
     <FrameLayout
-        android:layout_width="match_parent" android:layout_height="match_parent">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
         <RelativeLayout
             android:gravity="center"
             android:layout_width="match_parent"
@@ -15,13 +16,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="16dp"
-                android:background="#004c99"/>
+                android:background="@drawable/d_bluebox"/>
             <RelativeLayout
                 android:id="@+id/tt_rl1"
                 android:layout_below="@id/tt_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#b3eeeeee">
+                android:background="@drawable/d_whitebox">
                 <GridView
                     android:id="@+id/tt_gridview"
                     android:layout_width="wrap_content"
