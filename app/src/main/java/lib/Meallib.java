@@ -84,7 +84,7 @@ public class Meallib extends Thread {
 
 		
 		
-		for (int i = 1; i < rf.yoon()+2; i++) {
+		for (int i = 1; i < rf.yoon()+1; i++) {
 
 			sb.delete(0, sb.length());
 			regexMatcher = even.matcher(sb.append(st.nextToken()).toString());

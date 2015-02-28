@@ -131,7 +131,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
                 e.printStackTrace();
             }
             for (int i = 0; i < 3; i++) {// 파일로 저장
-                for (int j = 1; j < yoon()+2; j++) {
+                for (int j = 1; j < yoon()+1; j++) {
                     File f = new File(kongjugopath + i + "," + today + "월"+ j + "일" + ".txt");
                     try {
                         fw = new FileWriter(f);
