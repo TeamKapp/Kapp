@@ -25,13 +25,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<<<<<<< HEAD
-        <activity
-            android:name=".NoticeFragment"
-            android:label="공지사항" >
-        </activity>
-=======
->>>>>>> 4e9acbea7365f373ca5966263012dc58c1798a20
     </application>
 
 </manifest>

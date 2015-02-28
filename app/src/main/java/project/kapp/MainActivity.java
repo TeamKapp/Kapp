@@ -1,6 +1,5 @@
 package project.kapp;
 
-import android.app.Fragment;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
@@ -12,7 +11,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener{
 
@@ -37,9 +35,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         toolbar = (Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
-        rl_drawer = (RelativeLayout)findViewById(R.id.drawer);
         drawerLayout = (DrawerLayout)findViewById(R.id.drawerlayout);
-
+        rl_drawer = (RelativeLayout) findViewById(R.id.drawer);
         toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name, R.string.app_name);
         drawerLayout.setDrawerListener(toggle);
 
@@ -55,7 +52,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         if (findViewById(R.id.container) != null) {
             if (savedInstanceState != null) {return;}
-            RiceFragment riceFragment = new RiceFragment();
             riceFragment.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction().add(R.id.container, riceFragment).commit();
         }
