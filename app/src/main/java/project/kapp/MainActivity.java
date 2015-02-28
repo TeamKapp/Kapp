@@ -8,9 +8,12 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+
+import com.google.android.gcm.GCMRegistrar;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener{
 
@@ -55,6 +58,7 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             riceFragment.setArguments(getIntent().getExtras());
             getSupportFragmentManager().beginTransaction().add(R.id.container, riceFragment).commit();
         }
+        registeGCM();
     }
     @Override
     protected void onPostCreate(Bundle savedInstanceState) {
@@ -89,4 +93,18 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         ft.commit();
         drawerLayout.closeDrawers();
     }
+    public void registeGCM(){
+        GCMRegistrar.checkDevice(this);
+        GCMRegistrar.checkManifest(this);
+
+        final String regId = GCMRegistrar.getRegistrationId(this);
+
+        if (regId.equals("")) {
+            GCMRegistrar.register(this, "프로젝트 ID" );
+        } else {
+            Log.e("id", regId);
+        }
+
+    }
+
 }
