@@ -52,8 +52,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         if (findViewById(R.id.container) != null) {
             if (savedInstanceState != null) {return;}
-            riceFragment.setArguments(getIntent().getExtras());
-            getSupportFragmentManager().beginTransaction().add(R.id.container, riceFragment).commit();
+            timetableFragment.setArguments(getIntent().getExtras());
+            getSupportFragmentManager().beginTransaction().add(R.id.container, timetableFragment).commit();
         }
     }
     @Override
