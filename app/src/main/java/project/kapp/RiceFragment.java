@@ -4,7 +4,6 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -49,7 +48,6 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        Log.v("KappLog","RiceFragment Started");
 
         if (!dir.exists())
             dir.mkdir();
@@ -131,12 +129,10 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
                 e.printStackTrace();
             }
             for (int i = 0; i < 3; i++) {// 파일로 저장
-                for (int j = 1; j < yoon()+2; j++) {
+                for (int j = 1; j < yoon()+3; j++) {
                     File f = new File(kongjugopath + i + "," + today + "월"+ j + "일" + ".txt");
                     try {
                         fw = new FileWriter(f);
-
-                        Log.v("parsed"+i+j,Meallib.parsed[i][j]);
                         fw.write(Meallib.parsed[i][j]);
                         fw.close();
                     } catch (IOException e) {
