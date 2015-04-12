@@ -27,7 +27,7 @@ import lib.netload;
 public class RiceFragment extends Fragment implements View.OnClickListener{
 
     String address = "http://hes.cne.go.kr/sts_sci_md00_003.do?schulCode=N100000131&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=0";
-    String kongjugopath = "/sdcard/大Kongjugoapp/";
+    String kongjugopath = "/storage/sdcard0/Android/Kongjugodata/";
 
     Calendar cal = Calendar.getInstance();
     File dir = new File(kongjugopath);
@@ -120,7 +120,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
             catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            File d = new File(kongjugopath + "nowday.txt");// 날짜데이터
+            File d = new File(kongjugopath + "Monthcheck.txt");// 날짜데이터파일 저장
             FileWriter fw;
             try {
                 fw = new FileWriter(d);
@@ -136,7 +136,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
                     try {
                         fw = new FileWriter(f);
 
-                        Log.v("parsed"+i+j,Meallib.parsed[i][j]);
+                        Log.v("parsed"+i+j,j+Meallib.parsed[i][j]);//메뉴가 제대로 읽히고 있는지 확인
                         fw.write(Meallib.parsed[i][j]);
                         fw.close();
                     } catch (IOException e) {
@@ -151,7 +151,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
         else {// 네트워크 문제
             StringBuffer sb = new StringBuffer();
             try {// 저장일시 읽어들이기
-                FileInputStream fis = new FileInputStream(kongjugopath + "nowday.txt");
+                FileInputStream fis = new FileInputStream(kongjugopath + "Monthcheck.txt");
                 int n;
                 while ((n = fis.available()) > 0) {
                     byte b[] = new byte[n];
@@ -162,7 +162,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
                 fis.close();
             }
             catch (FileNotFoundException e) {
-                System.err.println("Could not find file" + kongjugopath + "nowday.txt");
+                System.err.println("Could not find file" + kongjugopath + "Monthcheck.txt");
             }
             catch (IOException e) {
                 e.printStackTrace();
@@ -173,7 +173,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
 
                 sb.delete(0, sb.length());
                 try {// 저장일시 읽어들이기
-                    FileInputStream fis = new FileInputStream(kongjugopath + mtime + "," + mdate + "일" + ".txt");
+                    FileInputStream fis = new FileInputStream(kongjugopath + mtime + "," + today + "월" + mdate + "일" + ".txt");
                     int n;
                     while ((n = fis.available()) > 0) {
                         byte b[] = new byte[n];
@@ -183,7 +183,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
                     }
                     fis.close();
                 } catch (FileNotFoundException e) {
-                    System.err.println("Could not find file" + kongjugopath + "nowday.txt");
+                    System.err.println("Could not find file" + kongjugopath + + mtime + "," + mdate + "일" + ".txt");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
