@@ -68,7 +68,7 @@ public class Meallib extends Thread {
 
         StringTokenizer st = new StringTokenizer(html, "\\#\\$\\!");
 
-        String[][] parsed = new String[3][35];// 결과물
+        String[][] parsed = new String[3][36];// 결과물
         StringBuffer sb = new StringBuffer();// 보이는데로
         Pattern even = Pattern.compile("석식]", Pattern.CASE_INSENSITIVE);// 오류
         // 방지를
@@ -76,7 +76,7 @@ public class Meallib extends Thread {
         Pattern afte = Pattern.compile("중식]", Pattern.CASE_INSENSITIVE);
         Pattern morn = Pattern.compile("조식]", Pattern.CASE_INSENSITIVE);
 
-        for (int i = 0; i <= 3; i++)
+        for (int i = 0; i <= 4; i++)
             System.out.println(st.nextToken()+"\n\n\n\n\n\n\n\n\n\n");
 
         for (int i = 1; st.hasMoreTokens(); i++) {
