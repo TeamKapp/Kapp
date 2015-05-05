@@ -2,6 +2,7 @@ package project.kapp;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -44,16 +45,17 @@ public class TimetableFragment extends Fragment {
 
     ProductDBHelper mHelper;
 
-
+    SharedPreferences ttset;
+    SharedPreferences.Editor tteditor;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        ttset = getActivity().getSharedPreferences("ttset", 0);
+        tteditor = ttset.edit();
+        
         setDB();
-
         view = inflater.inflate(R.layout.f_timetable, container, false);
-
         rl_gv = (RelativeLayout)view.findViewById(R.id.tt_rl1);
-
         mHelper=new ProductDBHelper(getActivity().getApplicationContext());
         db_timetable=mHelper.getWritableDatabase();
 
@@ -81,7 +83,9 @@ public class TimetableFragment extends Fragment {
 
             public void onNothingSelected(AdapterView<?> parent) {
             }});
-
+        tteditor.putInt("key", );
+        tteditor.commit();
+        
         return view;
     }
     public void setDB() {
