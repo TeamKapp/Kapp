@@ -24,7 +24,7 @@ import lib.Meallib;
 import lib.netload;
 
 @SuppressLint("SdCardPath")
-public class RiceFragment extends Fragment implements View.OnClickListener{
+public class RiceFragment extends Fragment implements View.OnClickListener {
 
     String address = "http://hes.cne.go.kr/sts_sci_md00_003.do?schulCode=N100000131&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=0";
     String kongjugopath = "/storage/sdcard0/Android/Kongjugodata/";
@@ -48,20 +48,19 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
     private View view;
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
-        Log.v("KappLog","RiceFragment Started");
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.v("KappLog", "RiceFragment Started");
 
         if (!dir.exists())
             dir.mkdir();
 
         view = inflater.inflate(R.layout.f_rice, container, false);
 
-        ricedate = (TextView) view.findViewById(R.id.noti_txt);
+        //ricedate = (TextView) view.findViewById(R.id.noti_txt);
 
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
-
-        taskstartmanager(1,1,cal.get(Calendar.MONTH)+1);
-        outputmanage(pd);
+        //taskstartmanager(address, 0, pd, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1).replace('\n', ' ');
+        //outputmanage(pd);
 
 
         /*Button yest = (Button) view.findViewById(R.id.rice_yesterday);
@@ -94,61 +93,47 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
 
         return view;
     }
+
     public void onClick(View view) {
         switch (view.getId()) {
         }
     }
-    void outputmanage(int date) {
+
+    void outputmanage(int date) {/*
         tv = (TextView) view.findViewById(R.id.rice_mor_txt);
-        tv.setText(taskstartmanager(0,date,cal.get(Calendar.MONTH)+1).replace('\n', ' '));
+        tv.setText(taskstartmanager(address, 0, date, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1).replace('\n', ' '));
 
         tv = (TextView) view.findViewById(R.id.rice_lau_txt);
-        tv.setText(taskstartmanager(1,date,cal.get(Calendar.MONTH)+1).replace('\n', ' '));
+        tv.setText(taskstartmanager(address, 1, date, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1).replace('\n', ' '));
 
         tv = (TextView) view.findViewById(R.id.rice_din_txt);
-        tv.setText(taskstartmanager(2,date,cal.get(Calendar.MONTH)+1).replace('\n', ' '));
+        tv.setText(taskstartmanager(address, 2, date, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1).replace('\n', ' '));*/
 
     }
-    String taskstartmanager(int mtime, int mdate, int today) {
+
+    String taskstartmanager(String addr, int mtime, int mdate, int myear, int mmonth) {
         Context ct = getActivity();
-        netload nl =new netload();
+        netload nl = new netload();
         if (!ran && nl.Checknetwork(ct)) {// 네트워크 체크
-            Meallib ml = new Meallib(address/*+"&schYm=2014."+today*/);
+            Meallib ml = new Meallib(addr + "&schYm=" + myear + "." + mmonth);
             ml.start();
-            try { ml.join();// 불러옴을 확인
-            }
-            catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            File d = new File(kongjugopath + "Monthcheck.txt");// 날짜데이터파일 저장
-            FileWriter fw;
             try {
-                fw = new FileWriter(d);
-                fw.write((cal.get(Calendar.MONTH) + 1) + "");
-                fw.close();
-            }
-            catch (IOException e) {
+                ml.join();// 불러옴을 확인
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+            fileWriter(kongjugopath + "Monthcheck.txt", (cal.get(Calendar.MONTH) + 1) + "");
+
             for (int i = 0; i < 3; i++) {// 파일로 저장
-                for (int j = 1; j < yoon()+1; j++) {
-                    File f = new File(kongjugopath + i + "," + today + "월"+ j + "일" + ".txt");
-                    try {
-                        fw = new FileWriter(f);
-
-                        Log.v("parsed"+i+j,j+Meallib.parsed[i][j]);//메뉴가 제대로 읽히고 있는지 확인
-                        fw.write(Meallib.parsed[i][j]);
-                        fw.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-
+                for (int j = 1; j < yoon() + 1; j++) {
+                    System.out.println("" + i + j);
+                    fileWriter(kongjugopath + i + "," + mmonth + "월" + j + "일" + ".txt", Meallib.parsed[i][j]);
                 }
             }
             ran = true;
             return Meallib.parsed[mtime][mdate];
-        }
-        else {// 네트워크 문제
+        } else {// 네트워크 문제
+            fileReader(kongjugopath + "Monthcheck.txt");
             StringBuffer sb = new StringBuffer();
             try {// 저장일시 읽어들이기
                 FileInputStream fis = new FileInputStream(kongjugopath + "Monthcheck.txt");
@@ -160,11 +145,9 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
                     sb.append(new String(b));
                 }
                 fis.close();
-            }
-            catch (FileNotFoundException e) {
+            } catch (FileNotFoundException e) {
                 System.err.println("Could not find file" + kongjugopath + "Monthcheck.txt");
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 e.printStackTrace();
             }
 
@@ -173,7 +156,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
 
                 sb.delete(0, sb.length());
                 try {// 저장일시 읽어들이기
-                    FileInputStream fis = new FileInputStream(kongjugopath + mtime + "," + today + "월" + mdate + "일" + ".txt");
+                    FileInputStream fis = new FileInputStream(kongjugopath + mtime + "," + mmonth + "월" + mdate + "일" + ".txt");
                     int n;
                     while ((n = fis.available()) > 0) {
                         byte b[] = new byte[n];
@@ -183,7 +166,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
                     }
                     fis.close();
                 } catch (FileNotFoundException e) {
-                    System.err.println("Could not find file" + kongjugopath + + mtime + "," + mdate + "일" + ".txt");
+                    System.err.println("Could not find file" + kongjugopath + +mtime + "," + mdate + "일" + ".txt");
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -195,16 +178,16 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
             }
         }
     }
+
     public int yoon() {
         int thisyear = cal.get(Calendar.YEAR);
         int feb;
         if ((thisyear % 4 == 0) && (thisyear % 100 != 0)
                 || (thisyear % 400 == 0)) {
             feb = 29;
-        }
-        else
+        } else
             feb = 28;
-        switch (cal.get(Calendar.MONTH)+1) {
+        switch (cal.get(Calendar.MONTH) + 1) {
             case 2:
                 return feb;
             case 4:
@@ -220,5 +203,38 @@ public class RiceFragment extends Fragment implements View.OnClickListener{
         }
     }
 
+    private void fileWriter(String filename, String put) {
+        File d = new File(filename);// 날짜데이터파일 저장
+        FileWriter fw;
+        try {
+            fw = new FileWriter(d);
+            fw.write(put);
+            fw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
+    }
+
+    private String fileReader(String filename) {
+        StringBuffer sb = new StringBuffer();
+        try {// 저장일시 읽어들이기
+            FileInputStream fis = new FileInputStream(filename);
+            int n;
+            while ((n = fis.available()) > 0) {
+                byte b[] = new byte[n];
+                if (fis.read(b) == -1)
+                    break;
+                sb.append(new String(b));
+            }
+            fis.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+            System.err.println("Could not find file" + filename);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return sb.toString();
+
+    }
 }

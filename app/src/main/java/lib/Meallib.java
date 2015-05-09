@@ -76,8 +76,10 @@ public class Meallib extends Thread {
         Pattern afte = Pattern.compile("중식]", Pattern.CASE_INSENSITIVE);
         Pattern morn = Pattern.compile("조식]", Pattern.CASE_INSENSITIVE);
 
-        for (int i = 0; i <= 4; i++)
-            System.out.println(st.nextToken()+"\n\n\n\n\n\n\n\n\n\n");
+        for (int i = 0; i <= 0; i++)
+            st.nextToken();
+        for ( ; st.nextToken() ==null; )
+            System.out.println("\n\n\n\n\n\n\n\n\n\n");
 
         for (int i = 1; st.hasMoreTokens(); i++) {
             Matcher regexMatcher;

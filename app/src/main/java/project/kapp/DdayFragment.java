@@ -26,7 +26,7 @@ public class DdayFragment extends Fragment{
         return f;
     }
     TextView d_daysat, d_daysusi;
-    private int curyear, curmonth, curdate, ddayyear, ddaymonth, ddaydate;
+    private int curyear, curmonth, curdate;
     SharedPreferences ddayset;
     SharedPreferences.Editor ddayeditor;
 
@@ -67,12 +67,9 @@ public class DdayFragment extends Fragment{
                 @Override
                 public void onDateSet(DatePicker view, int year, int monthOfYear,
                                       int dayOfMonth) {
-                    ddayyear=year;
-                    ddaymonth=monthOfYear;
-                    ddaydate=dayOfMonth;
-                    ddayeditor.putInt("year",ddayyear);
-                    ddayeditor.putInt("month",ddaymonth);
-                    ddayeditor.putInt("date",ddaydate);
+                    ddayeditor.putInt("year",year);
+                    ddayeditor.putInt("month",monthOfYear);
+                    ddayeditor.putInt("date",dayOfMonth);
                     ddayeditor.commit();
                     dDayCustom();
                 }
