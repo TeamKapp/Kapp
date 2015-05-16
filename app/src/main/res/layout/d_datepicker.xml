@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
     <LinearLayout
         android:id="@+id/ll1"
         android:layout_width="match_parent"
@@ -11,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="이름을 설정하세요."
+            android:text="이름을 입력하세요."
             android:textSize="16sp"
             android:textColor="#262626"
             android:padding="12dp"/>
@@ -20,6 +24,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="16dp"
+            android:hint="다섯글자가 적당합니다."
+            android:textColorHint="#4d262626"
             android:background="#eeeeee" />
         </LinearLayout>
     <LinearLayout
@@ -27,12 +33,24 @@
         android:layout_below="@id/ll1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:background="#dcdcdc">
-        <DatePicker
-            android:id="@+id/datepicker"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="8dp">
+            android:text="시간을 설정하세요."
+            android:textSize="16sp"
+            android:textColor="#262626"
+            android:padding="12dp"/>
+        <DatePicker
+            android:id="@+id/datepicker"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/Theme.AppCompat.Light"
+            android:calendarViewShown="false"
+            android:datePickerMode="spinner"
+            android:background="#eeeeee"
+            android:theme="@style/AppTheme">
             </DatePicker>
         
         </LinearLayout>
@@ -42,18 +60,22 @@
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:padding="8dp"
         android:background="#dcdcdc" >
         <Button
             android:id="@+id/btn1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="취소"
             android:padding="16dp"/>
         <Button
             android:id="@+id/btn2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_weight="1"
             android:text="설정"
             android:padding="16dp"/>
         </LinearLayout>
+    </RelativeLayout>
 </RelativeLayout>

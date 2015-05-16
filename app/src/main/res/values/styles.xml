@@ -10,6 +10,7 @@
         <item name="colorPrimaryDark">#b31A237E</item>
         <item name="colorControlHighlight">#00CC55</item>
         <item name="colorControlNormal">#eeeeee</item>
+        <item name="android:editTextColor">#000000</item>
 
     </style>
 

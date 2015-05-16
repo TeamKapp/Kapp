@@ -76,40 +76,40 @@ public class TimetableFragment extends Fragment {
             }
             public void onNothingSelected(AdapterView<?> parent) {
             }});
-        
+
         return view;
     }
     public void setTimetable(){
         int position = ttset.getInt("key", 0);
         timetable_spinner.setSelection(position);
-        if(position<=0)  {}
-        else if(position<=1)  {data11(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=2)  {data12(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=3)  {data13(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=4)  {data14(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=5)  {data15(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=6)  {data16(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=7)  {data17(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=8)  {data18(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=9)  {data19(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=10)  {data21(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=11)  {data22(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=12)  {data23(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=13)  {data24(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=14)  {data25(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=15)  {data26(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=16)  {data27(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=17)  {data28(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=18)  {data29(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=19)  {data31(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=20)  {data32(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=21)  {data33(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=22)  {data34(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=23)  {data35(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=24)  {data36(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=25)  {data37(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=26)  {data38(); rl_gv.setVisibility(view.VISIBLE);}
-        else if(position<=27)  {data39(); rl_gv.setVisibility(view.VISIBLE);}
+        if(position==0)  {}
+        else if(position == 1)  {data11(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==2)  {data12(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==3)  {data13(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==4)  {data14(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==5)  {data15(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==6)  {data16(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==7)  {data17(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==8)  {data18(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==9)  {data19(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==10)  {data21(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==11)  {data22(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==12)  {data23(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==13)  {data24(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==14)  {data25(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==15)  {data26(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==16)  {data27(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==17)  {data28(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==18)  {data29(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==19)  {data31(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==20)  {data32(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==21)  {data33(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==22)  {data34(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==23)  {data35(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==24)  {data36(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==25)  {data37(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==26)  {data38(); rl_gv.setVisibility(view.VISIBLE);}
+        else if(position==27)  {data39(); rl_gv.setVisibility(view.VISIBLE);}
 
 
     }
