@@ -3,13 +3,6 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
-    <ImageButton
-        android:layout_width="wrap_content"
-        android:layout_height="24dp"
-        android:src="@drawable/upbtn"
-        android:adjustViewBounds="true"
-        android:background="#00000000"
-        />
     <LinearLayout
         android:id="@+id/rice_container"
         android:layout_width="match_parent"
@@ -25,7 +18,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:background="#dcdcdc"
-            android:elevation="2dp"
+            android:elevation="4dp"
             android:layout_weight="1">
             <LinearLayout
                 android:id="@+id/rice_ll1"
@@ -61,7 +54,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:background="#dcdcdc"
-            android:elevation="2dp"
+            android:elevation="4dp"
             android:layout_weight="1">
             <LinearLayout
                 android:id="@+id/rice_ll2"
@@ -96,7 +89,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#dcdcdc"
-            android:elevation="2dp"
+            android:layout_marginBottom="8dp"
+            android:elevation="4dp"
             android:layout_weight="1">
             <LinearLayout
                 android:id="@+id/rice_ll3"

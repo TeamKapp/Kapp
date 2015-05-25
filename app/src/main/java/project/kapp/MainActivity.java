@@ -66,7 +66,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         super.onConfigurationChanged(newConfig);
         toggle.onConfigurationChanged(newConfig);
     }
-
     @Override
     public void onClick(View v) {
         ft = getSupportFragmentManager().beginTransaction();
@@ -83,7 +82,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             case R.id.btn4:
                 ft.replace(R.id.container, wordFragment);
                 break;
-
         }
         ft.addToBackStack(null);
         ft.commit();

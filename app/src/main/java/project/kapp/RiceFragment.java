@@ -7,11 +7,13 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -24,7 +26,7 @@ import lib.Meallib;
 import lib.netload;
 
 @SuppressLint("SdCardPath")
-public class RiceFragment extends Fragment implements View.OnClickListener {
+public class RiceFragment extends Fragment implements View.OnClickListener, GestureDetector.OnGestureListener {
 
     String address = "http://hes.cne.go.kr/sts_sci_md00_003.do?schulCode=N100000131&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=0";
     String kongjugopath = "/storage/sdcard0/Android/Kongjugodata/";
@@ -34,12 +36,12 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
     static boolean ran = false;
 
     private static final int SWIPE_MIN_DISTANCE = 120;
-    private static final int SWIPE_에이MAX_OFF_PATH = 250;
+    private static final int SWIPE_MAX_OFF_PATH = 250;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
     int pd = cal.get(Calendar.DATE);
     private int mShortAnimationDuration;
 
-    private GestureDetector gestureScanner;
+    private GestureDetector gestureDetector;
 
     private TextView tv, riceMorning, riceLaunch, riceDinner, ricedate;
     private Button prevBtn, nextBtn, seemoreExitBtn;
@@ -55,7 +57,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
             dir.mkdir();
 
         view = inflater.inflate(R.layout.f_rice, container, false);
-
+        gestureDetector = new GestureDetector(getActivity(),new GestureDetector.SimpleOnGestureListener());
         //ricedate = (TextView) view.findViewById(R.id.noti_txt);
 
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
@@ -93,10 +95,37 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
 
         return view;
     }
-
+    @Override
     public void onClick(View view) {
         switch (view.getId()) {
         }
+    }
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+        try {
+            if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
+                return false;
+
+            // right to left swipe
+            if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                Toast.makeText(view.getContext(), "Left Swipe", Toast.LENGTH_SHORT).show();
+            }
+            // left to right swipe
+            else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                Toast.makeText(view.getContext(), "Right Swipe", Toast.LENGTH_SHORT).show();
+            }
+            // down to up swipe
+            else if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+                Toast.makeText(view.getContext(), "Swipe up", Toast.LENGTH_SHORT).show();
+            }
+            // up to down swipe
+            else if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
+                Toast.makeText(view.getContext(), "Swipe down", Toast.LENGTH_SHORT).show();
+            }
+        } catch (Exception e) {
+
+        }
+        return true;
     }
 
     void outputmanage(int date) {/*
@@ -235,6 +264,25 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
             e.printStackTrace();
         }
         return sb.toString();
+    }
 
+    @Override
+    public void onLongPress(MotionEvent e) {
+    }
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
+                            float distanceY) {
+        return false;
+    }
+    @Override
+    public void onShowPress(MotionEvent e) {
+    }
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        return false;
+    }
+    @Override
+    public boolean onDown(MotionEvent e1){
+        return true;
     }
 }

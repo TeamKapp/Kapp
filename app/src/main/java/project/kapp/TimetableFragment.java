@@ -60,6 +60,7 @@ public class TimetableFragment extends Fragment {
         setDB();
         view = inflater.inflate(R.layout.f_timetable, container, false);
         rl_gv = (RelativeLayout)view.findViewById(R.id.tt_rl1);
+        rl_gv.setVisibility(view.GONE);
         mHelper=new ProductDBHelper(getActivity().getApplicationContext());
         db_timetable=mHelper.getWritableDatabase();
 
@@ -139,11 +140,6 @@ public class TimetableFragment extends Fragment {
 
         catch (IOException e) {Toast.makeText(getActivity(), "db이동실패", Toast.LENGTH_LONG).show();}
     }
-
-    private void nodata() {
-
-    }
-
 
     @SuppressWarnings("deprecation")
     private void data11(){
@@ -293,7 +289,7 @@ public class TimetableFragment extends Fragment {
 
     @SuppressWarnings("deprecation")
     private void data31(){
-        cursor_timetable=db_timetable.rawQuery("Select * from thirda where day='시간표'",null);
+        cursor_timetable=db_timetable.rawQuery("Select * from threea where day='시간표'",null);
         getActivity().startManagingCursor(cursor_timetable);
         final GridView timetable_gridview=(GridView)view.findViewById(R.id.tt_gridview);
         TableAdapter_timetable=new SimpleCursorAdapter(timetable_gridview.getContext(), R.layout.v_tt_list, cursor_timetable, name_timetable,num_timetable);
@@ -301,7 +297,7 @@ public class TimetableFragment extends Fragment {
     }
     @SuppressWarnings("deprecation")
     private void data32(){
-        cursor_timetable=db_timetable.rawQuery("Select * from thirdb where day='시간표'",null);
+        cursor_timetable=db_timetable.rawQuery("Select * from threeb where day='시간표'",null);
         getActivity().startManagingCursor(cursor_timetable);
         final GridView timetable_gridview=(GridView)view.findViewById(R.id.tt_gridview);
         TableAdapter_timetable=new SimpleCursorAdapter(timetable_gridview.getContext(), R.layout.v_tt_list, cursor_timetable, name_timetable,num_timetable);
@@ -309,7 +305,7 @@ public class TimetableFragment extends Fragment {
     }
     @SuppressWarnings("deprecation")
     private void data33(){
-        cursor_timetable=db_timetable.rawQuery("Select * from thirdc where day='시간표'",null);
+        cursor_timetable=db_timetable.rawQuery("Select * from threec where day='시간표'",null);
         getActivity().startManagingCursor(cursor_timetable);
         final GridView timetable_gridview=(GridView)view.findViewById(R.id.tt_gridview);
         TableAdapter_timetable=new SimpleCursorAdapter(timetable_gridview.getContext(), R.layout.v_tt_list, cursor_timetable, name_timetable,num_timetable);
@@ -317,7 +313,7 @@ public class TimetableFragment extends Fragment {
     }
     @SuppressWarnings("deprecation")
     private void data34(){
-        cursor_timetable=db_timetable.rawQuery("Select * from thirdd where day='시간표'",null);
+        cursor_timetable=db_timetable.rawQuery("Select * from threed where day='시간표'",null);
         getActivity().startManagingCursor(cursor_timetable);
         final GridView timetable_gridview=(GridView)view.findViewById(R.id.tt_gridview);
         TableAdapter_timetable=new SimpleCursorAdapter(timetable_gridview.getContext(), R.layout.v_tt_list, cursor_timetable, name_timetable,num_timetable);
@@ -325,7 +321,7 @@ public class TimetableFragment extends Fragment {
     }
     @SuppressWarnings("deprecation")
     private void data35(){
-        cursor_timetable=db_timetable.rawQuery("Select * from thirde where day='시간표'",null);
+        cursor_timetable=db_timetable.rawQuery("Select * from threee where day='시간표'",null);
         getActivity().startManagingCursor(cursor_timetable);
         final GridView timetable_gridview=(GridView)view.findViewById(R.id.tt_gridview);
         TableAdapter_timetable=new SimpleCursorAdapter(timetable_gridview.getContext(), R.layout.v_tt_list, cursor_timetable, name_timetable,num_timetable);
@@ -333,7 +329,7 @@ public class TimetableFragment extends Fragment {
     }
     @SuppressWarnings("deprecation")
     private void data36(){
-        cursor_timetable=db_timetable.rawQuery("Select * from thirdf where day='시간표'",null);
+        cursor_timetable=db_timetable.rawQuery("Select * from threef where day='시간표'",null);
         getActivity().startManagingCursor(cursor_timetable);
         final GridView timetable_gridview=(GridView)view.findViewById(R.id.tt_gridview);
         TableAdapter_timetable=new SimpleCursorAdapter(timetable_gridview.getContext(), R.layout.v_tt_list, cursor_timetable, name_timetable,num_timetable);
@@ -341,7 +337,7 @@ public class TimetableFragment extends Fragment {
     }
     @SuppressWarnings("deprecation")
     private void data37(){
-        cursor_timetable=db_timetable.rawQuery("Select * from thirdg where day='시간표'",null);
+        cursor_timetable=db_timetable.rawQuery("Select * from threeg where day='시간표'",null);
         getActivity().startManagingCursor(cursor_timetable);
         final GridView timetable_gridview=(GridView)view.findViewById(R.id.tt_gridview);
         TableAdapter_timetable=new SimpleCursorAdapter(timetable_gridview.getContext(), R.layout.v_tt_list, cursor_timetable, name_timetable,num_timetable);
@@ -349,7 +345,7 @@ public class TimetableFragment extends Fragment {
     }
     @SuppressWarnings("deprecation")
     private void data38(){
-        cursor_timetable=db_timetable.rawQuery("Select * from thirdh where day='시간표'",null);
+        cursor_timetable=db_timetable.rawQuery("Select * from threeh where day='시간표'",null);
         getActivity().startManagingCursor(cursor_timetable);
         final GridView timetable_gridview=(GridView)view.findViewById(R.id.tt_gridview);
         TableAdapter_timetable=new SimpleCursorAdapter(timetable_gridview.getContext(), R.layout.v_tt_list, cursor_timetable, name_timetable,num_timetable);
@@ -357,13 +353,12 @@ public class TimetableFragment extends Fragment {
     }
     @SuppressWarnings("deprecation")
     private void data39(){
-        cursor_timetable=db_timetable.rawQuery("Select * from thirdi where day='시간표'",null);
+        cursor_timetable=db_timetable.rawQuery("Select * from threei where day='시간표'",null);
         getActivity().startManagingCursor(cursor_timetable);
         final GridView timetable_gridview=(GridView)view.findViewById(R.id.tt_gridview);
         TableAdapter_timetable=new SimpleCursorAdapter(timetable_gridview.getContext(), R.layout.v_tt_list, cursor_timetable, name_timetable,num_timetable);
         timetable_gridview.setAdapter(TableAdapter_timetable);
     }
-
 
     class ProductDBHelper extends SQLiteOpenHelper{
         public ProductDBHelper(Context context) {super(context, "TimeTable.db", null, 1);}

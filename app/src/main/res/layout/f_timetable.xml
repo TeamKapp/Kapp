@@ -15,18 +15,16 @@
                 android:id="@+id/tt_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:elevation="8dp"
                 android:padding="16dp"
                 android:background="@drawable/d_bluebox"/>
-            <ImageButton
-                android:id="@+id/setbtn"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
-                android:layout_alignRight="@id/tt_spinner"/>
             <RelativeLayout
                 android:id="@+id/tt_rl1"
                 android:layout_below="@id/tt_spinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:elevation="4dp"
                 android:background="@drawable/d_whitebox">
                 <GridView
                     android:id="@+id/tt_gridview"

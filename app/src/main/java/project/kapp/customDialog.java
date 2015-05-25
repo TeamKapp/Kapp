@@ -1,18 +1,14 @@
 package project.kapp;
 
-import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Context;
-import android.view.KeyEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
-import android.widget.ScrollView;
 
 import java.util.Calendar;
-import java.util.Date;
 
 /**
  * Created by FullOfOrange on 2015. 5. 6..
@@ -23,7 +19,6 @@ public class customDialog extends Dialog{
     EditText editText;
     Button canbtn, setbtn;
     private String ddayname;
-    ScrollView scrollView;
     
     public customDialog(Context context) {
         super(context);
