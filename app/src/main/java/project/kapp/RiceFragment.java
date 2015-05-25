@@ -25,14 +25,17 @@ import java.util.Calendar;
 import lib.Meallib;
 import lib.netload;
 
+<<<<<<< HEAD
 @SuppressLint("SdCardPath")
 public class RiceFragment extends Fragment implements View.OnClickListener, GestureDetector.OnGestureListener {
+=======
+public class RiceFragment extends Fragment implements View.OnClickListener {
+>>>>>>> origin/master
 
     String address = "http://hes.cne.go.kr/sts_sci_md00_003.do?schulCode=N100000131&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=0";
-    String kongjugopath = "/storage/sdcard0/Android/Kongjugodata/";
+    String kongjugopath = "/storage/sdcard0/Kongjugodata/";
 
     Calendar cal = Calendar.getInstance();
-    File dir = new File(kongjugopath);
     static boolean ran = false;
 
     private static final int SWIPE_MIN_DISTANCE = 120;
@@ -53,15 +56,13 @@ public class RiceFragment extends Fragment implements View.OnClickListener, Gest
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.v("KappLog", "RiceFragment Started");
 
-        if (!dir.exists())
-            dir.mkdir();
 
         view = inflater.inflate(R.layout.f_rice, container, false);
         gestureDetector = new GestureDetector(getActivity(),new GestureDetector.SimpleOnGestureListener());
         //ricedate = (TextView) view.findViewById(R.id.noti_txt);
 
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
-        //taskstartmanager(address, 0, pd, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1).replace('\n', ' ');
+        taskstartmanager(address, 0, pd, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1).replace('\n', ' ');
         //outputmanage(pd);
 
 
@@ -140,72 +141,54 @@ public class RiceFragment extends Fragment implements View.OnClickListener, Gest
 
     }
 
-    String taskstartmanager(String addr, int mtime, int mdate, int myear, int mmonth) {
+    String taskstartmanager(String addr, int mtime, int mdate, int myear, int month) {
+        String mmonth = adds0tomonth(month);
+        filepathcheck(kongjugopath);
         Context ct = getActivity();
         netload nl = new netload();
         if (!ran && nl.Checknetwork(ct)) {// 네트워크 체크
+            Log.v("Thread Address", addr + "&schYm=" + myear + "." + mmonth+"/n/n");
             Meallib ml = new Meallib(addr + "&schYm=" + myear + "." + mmonth);
             ml.start();
             try {
                 ml.join();// 불러옴을 확인
+                Log.v("meallib ended", Meallib.parsed[1][1]);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            fileWriter(kongjugopath + "Monthcheck.txt", (cal.get(Calendar.MONTH) + 1) + "");
+            savefile(kongjugopath, "Monthcheck.txt", "" + (cal.get(Calendar.MONTH) + 1));
 
             for (int i = 0; i < 3; i++) {// 파일로 저장
                 for (int j = 1; j < yoon() + 1; j++) {
+
+                    Log.v("meallib ended", Meallib.parsed[1][1]);
                     System.out.println("" + i + j);
-                    fileWriter(kongjugopath + i + "," + mmonth + "월" + j + "일" + ".txt", Meallib.parsed[i][j]);
+                    savefile(kongjugopath, i + "," + mmonth + "월" + j + "일" + ".txt", Meallib.parsed[i][j]);
                 }
             }
             ran = true;
             return Meallib.parsed[mtime][mdate];
         } else {// 네트워크 문제
-            fileReader(kongjugopath + "Monthcheck.txt");
-            StringBuffer sb = new StringBuffer();
-            try {// 저장일시 읽어들이기
-                FileInputStream fis = new FileInputStream(kongjugopath + "Monthcheck.txt");
-                int n;
-                while ((n = fis.available()) > 0) {
-                    byte b[] = new byte[n];
-                    if (fis.read(b) == -1)
-                        break;
-                    sb.append(new String(b));
-                }
-                fis.close();
-            } catch (FileNotFoundException e) {
-                System.err.println("Could not find file" + kongjugopath + "Monthcheck.txt");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
 
-            if (sb.toString().equals((cal.get(Calendar.MONTH) + 1) + "")) {// 현재 유효한 데이터임을
+
+
+            if (readfile(kongjugopath, "Monthcheck.txt").equals((cal.get(Calendar.MONTH) + 1) + "")) {// 현재 유효한 데이터인지
                 // 확인함
 
-                sb.delete(0, sb.length());
-                try {// 저장일시 읽어들이기
-                    FileInputStream fis = new FileInputStream(kongjugopath + mtime + "," + mmonth + "월" + mdate + "일" + ".txt");
-                    int n;
-                    while ((n = fis.available()) > 0) {
-                        byte b[] = new byte[n];
-                        if (fis.read(b) == -1)
-                            break;
-                        sb.append(new String(b));
-                    }
-                    fis.close();
-                } catch (FileNotFoundException e) {
-                    System.err.println("Could not find file" + kongjugopath + +mtime + "," + mdate + "일" + ".txt");
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                return sb.toString();
+                return readfile(kongjugopath , mtime + "," + mmonth + "월" + mdate + "일" + ".txt");
             } else {
                 return "인터넷 연결이 필요합니다.";
 
 
             }
         }
+    }
+    private String adds0tomonth(int month){
+        if(month<10)
+            return "0"+month;
+        else
+            return month+"";
+
     }
 
     public int yoon() {
@@ -231,12 +214,20 @@ public class RiceFragment extends Fragment implements View.OnClickListener, Gest
                 return 31;
         }
     }
+    private void filepathcheck(String path){
+            File dir = new File(path);
+            if (!dir.exists()) {
+                Log.v("pathcheck", path+"not exist");
+                dir.mkdir();
+            }
+    }
 
-    private void fileWriter(String filename, String put) {
-        File d = new File(filename);// 날짜데이터파일 저장
+    private void savefile(String path, String filename, String put) {
+        File f = new File(filename);// 날짜데이터파일 저장
         FileWriter fw;
+        Log.v("fileWriter", path + filename + " writing started");
         try {
-            fw = new FileWriter(d);
+            fw = new FileWriter(f);
             fw.write(put);
             fw.close();
         } catch (IOException e) {
@@ -245,10 +236,17 @@ public class RiceFragment extends Fragment implements View.OnClickListener, Gest
 
     }
 
-    private String fileReader(String filename) {
+    private String readfile(String path, String filename) {
+        File f = new File(path + filename);
+        if(!f.exists()){
+            Log.v("filecheck", filename+"not exist");
+                    savefile(path, filename, "NULL");
+        }
+
         StringBuffer sb = new StringBuffer();
+        Log.v("fileWriter", filename+" reading started");
         try {// 저장일시 읽어들이기
-            FileInputStream fis = new FileInputStream(filename);
+            FileInputStream fis = new FileInputStream(path + filename);
             int n;
             while ((n = fis.available()) > 0) {
                 byte b[] = new byte[n];

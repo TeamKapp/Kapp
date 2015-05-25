@@ -1,5 +1,7 @@
 package lib;
 
+import android.util.Log;
+
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -22,8 +24,9 @@ public class Meallib extends Thread {
     }
 
     static void mealparseauto() {// 이거시 바로 주소만 넣으면 알아서 주간급식인지 월간급식인지 판별하는
-        String[] tokens = address.split("\\_");
+        String[] tokens = address.split("_");
         String ret = tokens[2];
+        Log.v("mealparseauto Started.",ret);
         if (ret.equals("md01")) {// 주간급식
             Mealparseweek();
         } else if (ret.equals("md00"))// 월간급식
@@ -61,12 +64,12 @@ public class Meallib extends Thread {
 
     }
 
-    protected static void Mealparsemth() {// 입력값:html문서, 요일값,
-        // 출력메뉴(1:날짜,
-        // 2:인원, 3:급식),
-        // 출력값:급식메뉴[요일값]
+    protected static void Mealparsemth() {
+        String token = "#$!1";
 
-        StringTokenizer st = new StringTokenizer(html, "\\#\\$\\!");
+        Log.v("mealparsemth", html.split("#\\$!1")[1]);
+
+        StringTokenizer st = new StringTokenizer(html.split("#\\$!1")[1], "#$!");
 
         String[][] parsed = new String[3][36];// 결과물
         StringBuffer sb = new StringBuffer();// 보이는데로
@@ -76,10 +79,7 @@ public class Meallib extends Thread {
         Pattern afte = Pattern.compile("중식]", Pattern.CASE_INSENSITIVE);
         Pattern morn = Pattern.compile("조식]", Pattern.CASE_INSENSITIVE);
 
-        for (int i = 0; i <= 0; i++)
-            st.nextToken();
-        for ( ; st.nextToken() ==null; )
-            System.out.println("\n\n\n\n\n\n\n\n\n\n");
+
 
         for (int i = 1; st.hasMoreTokens(); i++) {
             Matcher regexMatcher;

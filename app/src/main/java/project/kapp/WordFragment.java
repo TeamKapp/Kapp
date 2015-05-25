@@ -2,8 +2,6 @@ package project.kapp;
 
 
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -12,7 +10,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import lib.netload;
-import lib.wordclass;
+import lib.wordlib;
+
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -69,7 +68,7 @@ public class WordFragment extends Fragment {
         return view;
     }
 
-    class wordext extends wordclass {
+    class wordext extends wordlib {
         public wordext() {
             super();
         }
