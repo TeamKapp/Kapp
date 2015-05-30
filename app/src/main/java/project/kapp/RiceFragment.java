@@ -25,45 +25,41 @@ import java.util.Calendar;
 import lib.Meallib;
 import lib.netload;
 
-<<<<<<< HEAD
 @SuppressLint("SdCardPath")
-public class RiceFragment extends Fragment implements View.OnClickListener, GestureDetector.OnGestureListener {
-=======
 public class RiceFragment extends Fragment implements View.OnClickListener {
->>>>>>> origin/master
 
-    String address = "http://hes.cne.go.kr/sts_sci_md00_003.do?schulCode=N100000131&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=0";
-    String kongjugopath = "/storage/sdcard0/Kongjugodata/";
+        String address = "http://hes.cne.go.kr/sts_sci_md00_003.do?schulCode=N100000131&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=0";
+        String kongjugopath = "~/Kongjugodata/";
 
-    Calendar cal = Calendar.getInstance();
-    static boolean ran = false;
+        Calendar cal = Calendar.getInstance();
+        static boolean ran = false;
 
-    private static final int SWIPE_MIN_DISTANCE = 120;
-    private static final int SWIPE_MAX_OFF_PATH = 250;
-    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-    int pd = cal.get(Calendar.DATE);
-    private int mShortAnimationDuration;
+        private static final int SWIPE_MIN_DISTANCE = 120;
+        private static final int SWIPE_MAX_OFF_PATH = 250;
+        private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+        int pd = cal.get(Calendar.DATE);
+        private int mShortAnimationDuration;
 
-    private GestureDetector gestureDetector;
+        private GestureDetector gestureDetector;
 
-    private TextView tv, riceMorning, riceLaunch, riceDinner, ricedate;
-    private Button prevBtn, nextBtn, seemoreExitBtn;
-    private RelativeLayout seemorerice_layout;
-    private ViewGroup seedaterice;
-    private View view;
+        private TextView tv, riceMorning, riceLaunch, riceDinner, ricedate;
+        private Button prevBtn, nextBtn, seemoreExitBtn;
+        private RelativeLayout seemorerice_layout;
+        private ViewGroup seedaterice;
+        private View view;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        Log.v("KappLog", "RiceFragment Started");
+        @Override
+        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+            Log.v("KappLog", "RiceFragment Started");
 
 
-        view = inflater.inflate(R.layout.f_rice, container, false);
-        gestureDetector = new GestureDetector(getActivity(),new GestureDetector.SimpleOnGestureListener());
-        //ricedate = (TextView) view.findViewById(R.id.noti_txt);
+            view = inflater.inflate(R.layout.f_rice, container, false);
+            gestureDetector = new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener());
+            //ricedate = (TextView) view.findViewById(R.id.noti_txt);
 
-        mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
-        taskstartmanager(address, 0, pd, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1).replace('\n', ' ');
-        //outputmanage(pd);
+            mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
+            taskstartmanager(address, 0, pd, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1).replace('\n', ' ');
+            //outputmanage(pd);
 
 
         /*Button yest = (Button) view.findViewById(R.id.rice_yesterday);
@@ -94,42 +90,18 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
             }
         });*/
 
-        return view;
-    }
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
+            return view;
         }
-    }
-    @Override
-    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
-        try {
-            if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
-                return false;
 
-            // right to left swipe
-            if (e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                Toast.makeText(view.getContext(), "Left Swipe", Toast.LENGTH_SHORT).show();
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()) {
             }
-            // left to right swipe
-            else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                Toast.makeText(view.getContext(), "Right Swipe", Toast.LENGTH_SHORT).show();
-            }
-            // down to up swipe
-            else if (e1.getY() - e2.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                Toast.makeText(view.getContext(), "Swipe up", Toast.LENGTH_SHORT).show();
-            }
-            // up to down swipe
-            else if (e2.getY() - e1.getY() > SWIPE_MIN_DISTANCE && Math.abs(velocityY) > SWIPE_THRESHOLD_VELOCITY) {
-                Toast.makeText(view.getContext(), "Swipe down", Toast.LENGTH_SHORT).show();
-            }
-        } catch (Exception e) {
-
         }
-        return true;
-    }
 
-    void outputmanage(int date) {/*
+        
+
+        void outputmanage(int date) {
         tv = (TextView) view.findViewById(R.id.rice_mor_txt);
         tv.setText(taskstartmanager(address, 0, date, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1).replace('\n', ' '));
 
@@ -137,150 +109,132 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
         tv.setText(taskstartmanager(address, 1, date, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1).replace('\n', ' '));
 
         tv = (TextView) view.findViewById(R.id.rice_din_txt);
-        tv.setText(taskstartmanager(address, 2, date, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1).replace('\n', ' '));*/
+        tv.setText(taskstartmanager(address, 2, date, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1).replace('\n', ' '));
 
-    }
+        }
 
-    String taskstartmanager(String addr, int mtime, int mdate, int myear, int month) {
-        String mmonth = adds0tomonth(month);
-        filepathcheck(kongjugopath);
-        Context ct = getActivity();
-        netload nl = new netload();
-        if (!ran && nl.Checknetwork(ct)) {// 네트워크 체크
-            Log.v("Thread Address", addr + "&schYm=" + myear + "." + mmonth+"/n/n");
-            Meallib ml = new Meallib(addr + "&schYm=" + myear + "." + mmonth);
-            ml.start();
-            try {
-                ml.join();// 불러옴을 확인
-                Log.v("meallib ended", Meallib.parsed[1][1]);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-            savefile(kongjugopath, "Monthcheck.txt", "" + (cal.get(Calendar.MONTH) + 1));
-
-            for (int i = 0; i < 3; i++) {// 파일로 저장
-                for (int j = 1; j < yoon() + 1; j++) {
-
+        String taskstartmanager(String addr, int mtime, int mdate, int myear, int month) {
+            String mmonth = adds0tomonth(month);
+            filepathcheck(kongjugopath);
+            Context ct = getActivity();
+            netload nl = new netload();
+            if (!ran && nl.Checknetwork(ct)) {// 네트워크 체크
+                Log.v("Thread Address", addr + "&schYm=" + myear + "." + mmonth + "/n/n");
+                Meallib ml = new Meallib(addr + "&schYm=" + myear + "." + mmonth);
+                ml.start();
+                try {
+                    ml.join();// 불러옴을 확인
                     Log.v("meallib ended", Meallib.parsed[1][1]);
-                    System.out.println("" + i + j);
-                    savefile(kongjugopath, i + "," + mmonth + "월" + j + "일" + ".txt", Meallib.parsed[i][j]);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                savefile(kongjugopath, "Monthcheck.txt", "" + (cal.get(Calendar.MONTH) + 1));
+
+                for (int i = 0; i < 3; i++) {// 파일로 저장
+                    for (int j = 1; j < yoon() + 1; j++) {
+
+                        Log.v("meallib ended", Meallib.parsed[1][1]);
+                        System.out.println("" + i + j);
+                        savefile(kongjugopath, i + "," + mmonth + "월" + j + "일" + ".txt", Meallib.parsed[i][j]);
+                    }
+                }
+                ran = true;
+                return Meallib.parsed[mtime][mdate];
+            } else {// 네트워크 문제
+
+
+                if (readfile(kongjugopath, "Monthcheck.txt").equals((cal.get(Calendar.MONTH) + 1) + "")) {// 현재 유효한 데이터인지
+                    // 확인함
+
+                    return readfile(kongjugopath, mtime + "," + mmonth + "월" + mdate + "일" + ".txt");
+                } else {
+                    return "인터넷 연결이 필요합니다.";
+
+
                 }
             }
-            ran = true;
-            return Meallib.parsed[mtime][mdate];
-        } else {// 네트워크 문제
+        }
 
+        private String adds0tomonth(int month) {
+            if (month < 10)
+                return "0" + month;
+            else
+                return month + "";
 
+        }
 
-            if (readfile(kongjugopath, "Monthcheck.txt").equals((cal.get(Calendar.MONTH) + 1) + "")) {// 현재 유효한 데이터인지
-                // 확인함
-
-                return readfile(kongjugopath , mtime + "," + mmonth + "월" + mdate + "일" + ".txt");
-            } else {
-                return "인터넷 연결이 필요합니다.";
-
-
+        public int yoon() {
+            int thisyear = cal.get(Calendar.YEAR);
+            int feb;
+            if ((thisyear % 4 == 0) && (thisyear % 100 != 0)
+                    || (thisyear % 400 == 0)) {
+                feb = 29;
+            } else
+                feb = 28;
+            switch (cal.get(Calendar.MONTH) + 1) {
+                case 2:
+                    return feb;
+                case 4:
+                    return 30;
+                case 6:
+                    return 30;
+                case 9:
+                    return 30;
+                case 11:
+                    return 30;
+                default:
+                    return 31;
             }
         }
-    }
-    private String adds0tomonth(int month){
-        if(month<10)
-            return "0"+month;
-        else
-            return month+"";
 
-    }
-
-    public int yoon() {
-        int thisyear = cal.get(Calendar.YEAR);
-        int feb;
-        if ((thisyear % 4 == 0) && (thisyear % 100 != 0)
-                || (thisyear % 400 == 0)) {
-            feb = 29;
-        } else
-            feb = 28;
-        switch (cal.get(Calendar.MONTH) + 1) {
-            case 2:
-                return feb;
-            case 4:
-                return 30;
-            case 6:
-                return 30;
-            case 9:
-                return 30;
-            case 11:
-                return 30;
-            default:
-                return 31;
-        }
-    }
-    private void filepathcheck(String path){
+        private void filepathcheck(String path) {
             File dir = new File(path);
             if (!dir.exists()) {
-                Log.v("pathcheck", path+"not exist");
+                Log.v("pathcheck", path + "not exist");
                 dir.mkdir();
             }
-    }
-
-    private void savefile(String path, String filename, String put) {
-        File f = new File(filename);// 날짜데이터파일 저장
-        FileWriter fw;
-        Log.v("fileWriter", path + filename + " writing started");
-        try {
-            fw = new FileWriter(f);
-            fw.write(put);
-            fw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
 
-    }
-
-    private String readfile(String path, String filename) {
-        File f = new File(path + filename);
-        if(!f.exists()){
-            Log.v("filecheck", filename+"not exist");
-                    savefile(path, filename, "NULL");
-        }
-
-        StringBuffer sb = new StringBuffer();
-        Log.v("fileWriter", filename+" reading started");
-        try {// 저장일시 읽어들이기
-            FileInputStream fis = new FileInputStream(path + filename);
-            int n;
-            while ((n = fis.available()) > 0) {
-                byte b[] = new byte[n];
-                if (fis.read(b) == -1)
-                    break;
-                sb.append(new String(b));
+        private void savefile(String path, String filename, String put) {
+            File f = new File(filename);// 날짜데이터파일 저장
+            FileWriter fw;
+            Log.v("fileWriter", path + filename + " writing started");
+            try {
+                fw = new FileWriter(f);
+                fw.write(put);
+                fw.close();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            fis.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-            System.err.println("Could not find file" + filename);
-        } catch (IOException e) {
-            e.printStackTrace();
+
         }
-        return sb.toString();
+
+        private String readfile(String path, String filename) {
+            File f = new File(path + filename);
+            if (!f.exists()) {
+                Log.v("filecheck", filename + "not exist");
+                savefile(path, filename, "NULL");
+            }
+
+            StringBuffer sb = new StringBuffer();
+            Log.v("fileWriter", filename + " reading started");
+            try {// 저장일시 읽어들이기
+                FileInputStream fis = new FileInputStream(path + filename);
+                int n;
+                while ((n = fis.available()) > 0) {
+                    byte b[] = new byte[n];
+                    if (fis.read(b) == -1)
+                        break;
+                    sb.append(new String(b));
+                }
+                fis.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+                System.err.println("Could not find file" + filename);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return sb.toString();
+        }
     }
 
-    @Override
-    public void onLongPress(MotionEvent e) {
-    }
-    @Override
-    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX,
-                            float distanceY) {
-        return false;
-    }
-    @Override
-    public void onShowPress(MotionEvent e) {
-    }
-    @Override
-    public boolean onSingleTapUp(MotionEvent e) {
-        return false;
-    }
-    @Override
-    public boolean onDown(MotionEvent e1){
-        return true;
-    }
-}
