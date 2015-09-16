@@ -9,31 +9,32 @@ import java.util.regex.Pattern;
 public class Meallib extends Thread {
     static String address;
     static String html;
-    public static String parsed[][];
-
-    public Meallib(String addr) {
-
+    public String[][] parsed;
+    public static int month;
+    
+    public Meallib(String addr, int month) {
+        this.month = month;
         address = addr;
     }
 
     public void run() {
         netload nl = new netload();
         html = nl.loadhtml(address);
-        mealparseauto();
+        parsed = mealparseauto();
 
     }
 
-    static void mealparseauto() {// 이거시 바로 주소만 넣으면 알아서 주간급식인지 월간급식인지 판별하는
+    static String[][] mealparseauto() {// 이거시 바로 주소만 넣으면 알아서 주간급식인지 월간급식인지 판별하는
         String[] tokens = address.split("_");
         String ret = tokens[2];
         Log.v("mealparseauto Started.",ret);
         if (ret.equals("md01")) {// 주간급식
-            Mealparseweek();
+            return Mealparseweek();
         } else if (ret.equals("md00"))// 월간급식
         {
-            Mealparsemth();
-        } else {// 읎다
-
+            return Mealparsemth();
+        } else {// 없다
+            return null;
         }
 
     }
@@ -42,7 +43,7 @@ public class Meallib extends Thread {
 	 * 급식 파싱하기 일주일치 식단
 	 */
 
-    protected static void Mealparseweek() {// 입력값:html문서,
+    protected static String[][] Mealparseweek() {// 입력값:html문서,
         // 요일값,
         // 출력메뉴(1:날짜,
         // 2:인원,
@@ -51,7 +52,7 @@ public class Meallib extends Thread {
         String[][] parsed = new String[8][3];// 파싱 완료된 것
         String[] tokens = html.split("\\#\\$\\!");
         int max = 22;
-        // 이 for문이 오류투성이다.
+        
         for (int i = 1, j = 0; i <= max; i++) {
             parsed[j][0] = tokens[i];// i에 해당하는 토큰 받아오기
             j++;
@@ -60,18 +61,16 @@ public class Meallib extends Thread {
             parsed[j][2] = tokens[i];// i에 해당하는 토큰 받아오기
             j++;
         }
-        Meallib.parsed = parsed;
+        return parsed;
 
     }
 
-    protected static void Mealparsemth() {
+    protected static String[][] Mealparsemth() {
+        String[][] parsed = new String[3][36];// 결과물
         String token = "#$!1";
 
-        Log.v("mealparsemth", html.split("#\\$!1")[1]);
+        StringTokenizer st = new StringTokenizer(html.split("#\\$! #\\$!1")[1], "#$!");
 
-        StringTokenizer st = new StringTokenizer(html.split("#\\$!1")[1], "#$!");
-
-        String[][] parsed = new String[3][36];// 결과물
         StringBuffer sb = new StringBuffer();// 보이는데로
         Pattern even = Pattern.compile("석식]", Pattern.CASE_INSENSITIVE);// 오류
         // 방지를
@@ -81,7 +80,9 @@ public class Meallib extends Thread {
 
 
 
-        for (int i = 1; st.hasMoreTokens(); i++) {
+        for (int i = 1; i<=general.yoon(month); i++) {
+            
+            Log.v("mealparsemth", i+"");
             Matcher regexMatcher;
 
             sb.delete(0, sb.length());
@@ -94,12 +95,14 @@ public class Meallib extends Thread {
                 if (regexMatcher.end() + 1 <= j)//지정 값이 0 이상인지 확인
                     parsed[2][i] = sb.toString().substring(
                             regexMatcher.end() + 1, j);
+                
                 j = regexMatcher.start();
             }
 
             else {
                 parsed[2][i] = "급식이 없는 듯 합니다.";
             }
+            Log.v("mealparsemthtest", parsed[2][i]);
 
             regexMatcher.reset();
             regexMatcher = afte.matcher(sb.toString());
@@ -126,7 +129,7 @@ public class Meallib extends Thread {
             }
             regexMatcher.reset();
         }
-        Meallib.parsed = parsed;
+        return parsed;
 
     }
 }

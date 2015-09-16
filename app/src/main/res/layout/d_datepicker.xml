@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -25,8 +25,9 @@
             android:layout_height="wrap_content"
             android:padding="16dp"
             android:hint="다섯글자가 적당합니다."
+            android:imeOptions="actionDone"
             android:textColorHint="#4d262626"
-            android:background="#eeeeee" />
+            android:background="#5e5e5e" />
         </LinearLayout>
     <LinearLayout
         android:id="@+id/ll2"
@@ -49,7 +50,7 @@
             style="@style/Theme.AppCompat.Light"
             android:calendarViewShown="false"
             android:datePickerMode="spinner"
-            android:background="#eeeeee"
+            android:background="#5e5e5e"
             android:theme="@style/AppTheme">
             </DatePicker>
         
@@ -78,4 +79,4 @@
             android:padding="16dp"/>
         </LinearLayout>
     </RelativeLayout>
-</RelativeLayout>
+</ScrollView>

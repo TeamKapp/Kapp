@@ -3,6 +3,7 @@ package lib;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -48,6 +49,7 @@ public class netload {
                 conn.disconnect();
             }
             // Html 불러오기 완료
+            Log.v("loadhtml completed", Html.toString());
             return Html.toString();
         } catch (Exception 로드가앙대) {
             return null;

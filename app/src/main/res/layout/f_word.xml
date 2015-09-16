@@ -132,5 +132,13 @@
             </RelativeLayout>
         </LinearLayout>
     </ScrollView>
+    <TextView
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:textSize="14sp"
+        android:textColor="#747474"
+        android:text="다음 단어들은 네이버 영단어에서 가져옵니다.\n하루에 한번씩 업데이트됩니다."/>
 
 </RelativeLayout>

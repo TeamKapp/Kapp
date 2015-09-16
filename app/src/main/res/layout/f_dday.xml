@@ -1,52 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
-    <RelativeLayout
-        android:orientation="vertical" android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_centerInParent="true">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
+            android:layout_height="match_parent"
             android:layout_margin="8dp">
-
-        <RelativeLayout
-            android:id="@+id/dday_ll1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:elevation="2dp"
-            android:layout_centerHorizontal="true"
-            android:padding="10dp"
-            android:background="@drawable/d_bluebox">
-            <TextView
-                android:id="@+id/dday_txt1"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:id="@+id/dday_ll1"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_margin="15dp"
-                android:textSize="60sp"
-                android:textColor="#66eeeeee"
-                android:text="수능"/>
-            <TextView
-                android:id="@+id/dday_txt_sat"
-                android:layout_width="wrap_content"
+                android:elevation="2dp"
+                android:layout_marginBottom="8dp"
+                android:layout_centerHorizontal="true"
+                android:padding="10dp"
+                android:background="@drawable/d_bluebox">
+                <TextView
+                    android:id="@+id/dday_txt1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="15dp"
+                    android:text="수능"
+                    android:textSize="40sp"
+                    android:textColor="#66eeeeee"/>
+                <TextView
+                    android:id="@+id/dday_txt_sat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="60sp"
+                    android:textColor="#eeeeee"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:id="@+id/dday_ll2"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:textSize="80sp"
-                android:textColor="#eeeeee"
-                android:text="D-30"/>
-        </RelativeLayout>
+                android:layout_below="@id/dday_ll1"
+                android:layout_marginBottom="4dp"
+                android:elevation="2dp"
+                android:layout_centerHorizontal="true"
+                android:padding="10dp"
+                android:background="@drawable/d_bluebox">
+                <TextView
+                    android:id="@+id/dday_txt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_margin="15dp"
+                    android:text="수시"
+                    android:textSize="40sp"
+                    android:textColor="#66eeeeee"/>
+                <TextView
+                    android:id="@+id/dday_txt_susi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:textSize="60sp"
+                    android:textColor="#eeeeee"/>
+            </RelativeLayout>
             <RelativeLayout
                 android:id="@+id/dday_llm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/dday_ll1"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="8dp"
+                android:layout_below="@id/dday_ll2"
                 android:elevation="8dp"
                 android:padding="10dp"
                 android:background="#dcdcdc">
@@ -63,44 +90,11 @@
                     android:layout_below="@id/dday_txtm"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="80sp"
+                    android:textSize="70sp"
                     android:textColor="#eeeeee"
                     android:background="@drawable/d_bluebox"
-                    android:text="D-30"
                     android:gravity="center_horizontal" />
-           
+            </RelativeLayout>
         </RelativeLayout>
-        <RelativeLayout
-            android:id="@+id/dday_ll2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/dday_llm"
-            android:layout_marginBottom="4dp"
-            android:elevation="2dp"
-            android:layout_centerHorizontal="true"
-            android:padding="10dp"
-            android:background="@drawable/d_bluebox">
-            <TextView
-                android:id="@+id/dday_txt2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_margin="15dp"
-                android:textSize="60sp"
-                android:textColor="#66eeeeee"
-                android:text="D-day"/>
-            <TextView
-                android:id="@+id/dday_txt_susi"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
-                android:textSize="80sp"
-                android:textColor="#eeeeee"
-                android:text="D - 57"/>
-        </RelativeLayout>
-
-        </RelativeLayout>
-    </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>

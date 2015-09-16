@@ -41,7 +41,7 @@ public class wordlib extends Thread {// 사용법: word[]와 mean[]에 각각 �
 
             parsing.delete(0, parsing.length());
 
-            parsing.append(tokens1[i]);// i에 해당하는 토큰 받아오기
+            parsing.append(tokens1[(2*i)-1]);// i에 해당하는 토큰 받아오기
 
             String[] tokens2 = parsing.toString()
                     .split("\\<\\/em\\>\\<\\/a\\>");

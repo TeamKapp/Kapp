@@ -17,7 +17,7 @@
                 android:layout_height="wrap_content"
                 android:elevation="8dp"
                 android:padding="16dp"
-                android:background="@drawable/d_bluebox"/>
+                android:background="#004C99"/>
             <RelativeLayout
                 android:id="@+id/tt_rl1"
                 android:layout_below="@id/tt_spinner"

@@ -9,6 +9,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.view.ViewDebug;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
@@ -23,10 +24,12 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     private TimetableFragment timetableFragment = new TimetableFragment();
     private DdayFragment ddayFragment = new DdayFragment();
     private WordFragment wordFragment = new WordFragment();
+    private IntroduceFragment introduceFragment = new IntroduceFragment();
+    private DeveloperIntroFragment developintroFragment = new DeveloperIntroFragment();
 
     RelativeLayout rl_drawer;
 
-    Button Nbtn1, Nbtn2, Nbtn3, Nbtn4, Nbtn5;
+    Button Nbtn1, Nbtn2, Nbtn3, Nbtn4, Nbtn5, Nbtn6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +48,8 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         Nbtn3 = (Button)rl_drawer.findViewById(R.id.btn3);
         Nbtn4 = (Button)rl_drawer.findViewById(R.id.btn4);
         Nbtn5 = (Button)rl_drawer.findViewById(R.id.btn5);
-        for(int i=0; i<5; i++ ){
+        Nbtn6 = (Button)rl_drawer.findViewById(R.id.btn6);
+        for(int i=0; i<6; i++ ){
             findViewById(R.id.btn1+i).setOnClickListener(this); }
 
         fm = getSupportFragmentManager();
@@ -81,6 +85,12 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
                 break;
             case R.id.btn4:
                 ft.replace(R.id.container, wordFragment);
+                break;
+            case R.id.btn5:
+                ft.replace(R.id.container, introduceFragment);
+                break;
+            case R.id.btn6:
+                ft.replace(R.id.container, developintroFragment);
                 break;
         }
         ft.addToBackStack(null);

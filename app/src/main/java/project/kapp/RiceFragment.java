@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.LayoutInflater;
@@ -23,180 +24,182 @@ import java.io.IOException;
 import java.util.Calendar;
 
 import lib.Meallib;
+import lib.general;
 import lib.netload;
 
 @SuppressLint("SdCardPath")
 public class RiceFragment extends Fragment implements View.OnClickListener {
 
-        String address = "http://hes.cne.go.kr/sts_sci_md00_003.do?schulCode=N100000131&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=0";
-        String kongjugopath = "~/Kongjugodata/";
+    String address = "http://hes.cne.go.kr/sts_sci_md00_003.do?schulCode=N100000131&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=0";
+    String kongjugopath ="/sdcard/Android/kongjugoappData/";
 
-        Calendar cal = Calendar.getInstance();
-        static boolean ran = false;
+    Calendar cal = Calendar.getInstance();
+    static boolean ran = false;
 
-        private static final int SWIPE_MIN_DISTANCE = 120;
-        private static final int SWIPE_MAX_OFF_PATH = 250;
-        private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-        int pd = cal.get(Calendar.DATE);
-        private int mShortAnimationDuration;
+    private static final int SWIPE_MIN_DISTANCE = 120;
+    private static final int SWIPE_MAX_OFF_PATH = 250;
+    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
+    int pd = cal.get(Calendar.DATE);
+    int pm = cal.get(Calendar.MONTH);
+    int py = cal.get(Calendar.YEAR);
+    private int mShortAnimationDuration;
 
-        private GestureDetector gestureDetector;
+    private GestureDetector gestureDetector;
 
-        private TextView tv, riceMorning, riceLaunch, riceDinner, ricedate;
-        private Button prevBtn, nextBtn, seemoreExitBtn;
-        private RelativeLayout seemorerice_layout;
-        private ViewGroup seedaterice;
-        private View view;
+    private TextView tv, riceMorning, riceLaunch, riceDinner, ricedate;
+    private Button prevBtn, nextBtn, seemoreExitBtn;
+    private RelativeLayout seemorerice_layout;
+    private ViewGroup seedaterice;
+    private View view;
 
-        @Override
-        public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-            Log.v("KappLog", "RiceFragment Started");
-
-
-            view = inflater.inflate(R.layout.f_rice, container, false);
-            gestureDetector = new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener());
-            //ricedate = (TextView) view.findViewById(R.id.noti_txt);
-
-            mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
-            taskstartmanager(address, 0, pd, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1).replace('\n', ' ');
-            //outputmanage(pd);
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        Log.v("KappLog", "RiceFragment Started");
 
 
-        /*Button yest = (Button) view.findViewById(R.id.rice_yesterday);
+        view = inflater.inflate(R.layout.f_rice, container, false);
+        gestureDetector = new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener());
+        //ricedate = (TextView) view.findViewById(R.id.noti_txt);
+
+        mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
+        outputmanage(pd,pm,py);
+
+
+        Button yest = (Button) view.findViewById(R.id.next_day);
         yest.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
-                if (pd > 1) {
-                    pd--;
-                    outputmanage(pd);
+                if (pd < general.yoon(pm)) {
+                    pd++;
                 }
+                else{
+                    if(pm ==12){
+                        pd = 1;
+                        pm = 1;
+                        py++;
+                    }
+                    else{
+                        pd = 1;
+                        pm++;
+                    }
+                }    
+                outputmanage(pd,pm,py);
             }
         });
 
-        Button toda = (Button) view.findViewById(R.id.rice_today);
+        Button toda = (Button) view.findViewById(R.id.back_today);
         toda.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 pd = cal.get(Calendar.DATE);
-                outputmanage(pd);
+                pm = cal.get(Calendar.MONTH);
+                outputmanage(pd,pm,py);
             }
         });
 
-        Button tomo = (Button) view.findViewById(R.id.rice_tomorrow);
-        tomo.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View view) {
-                if (pd < yoon()) {
-                    pd++;
-                    outputmanage(pd);
-                }
-            }
-        });*/
+        return view;
+    }
 
-            return view;
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
         }
+    }
 
-        @Override
-        public void onClick(View view) {
-            switch (view.getId()) {
-            }
-        }
 
-        
-
-        void outputmanage(int date) {
+    void outputmanage(int date, int month, int year) {
         tv = (TextView) view.findViewById(R.id.rice_mor_txt);
-        tv.setText(taskstartmanager(address, 0, date, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1).replace('\n', ' '));
+        tv.setVerticalScrollBarEnabled(true);
+        tv.setMovementMethod(new ScrollingMovementMethod());
+        tv.setText(taskstartmanager(address, 0, date, year, month + 1).replace('\n', ' '));
+
 
         tv = (TextView) view.findViewById(R.id.rice_lau_txt);
-        tv.setText(taskstartmanager(address, 1, date, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1).replace('\n', ' '));
+        tv.setVerticalScrollBarEnabled(true);
+        tv.setMovementMethod(new ScrollingMovementMethod());
+        tv.setText(taskstartmanager(address, 1, date, year, month + 1).replace('\n', ' '));
 
         tv = (TextView) view.findViewById(R.id.rice_din_txt);
-        tv.setText(taskstartmanager(address, 2, date, cal.get(Calendar.YEAR), cal.get(Calendar.MONTH) + 1).replace('\n', ' '));
+        tv.setVerticalScrollBarEnabled(true);
+        tv.setMovementMethod(new ScrollingMovementMethod());
+        tv.setText(taskstartmanager(address, 2, date, year, month + 1).replace('\n', ' '));
+/*여기를 활성화시켜서 날짜박스 추가
+        tv = (TextView) view.findViewById(R.id.rice_datebox);
+        tv.setText(year+"년 "+month+"월 "+date+"일");
+*/
+   }
 
-        }
+    int schm;
+    String parsedsave[][];
 
-        String taskstartmanager(String addr, int mtime, int mdate, int myear, int month) {
-            String mmonth = adds0tomonth(month);
-            filepathcheck(kongjugopath);
-            Context ct = getActivity();
-            netload nl = new netload();
-            if (!ran && nl.Checknetwork(ct)) {// 네트워크 체크
-                Log.v("Thread Address", addr + "&schYm=" + myear + "." + mmonth + "/n/n");
-                Meallib ml = new Meallib(addr + "&schYm=" + myear + "." + mmonth);
-                ml.start();
-                try {
-                    ml.join();// 불러옴을 확인
-                    Log.v("meallib ended", Meallib.parsed[1][1]);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                savefile(kongjugopath, "Monthcheck.txt", "" + (cal.get(Calendar.MONTH) + 1));
-
-                for (int i = 0; i < 3; i++) {// 파일로 저장
-                    for (int j = 1; j < yoon() + 1; j++) {
-
-                        Log.v("meallib ended", Meallib.parsed[1][1]);
-                        System.out.println("" + i + j);
-                        savefile(kongjugopath, i + "," + mmonth + "월" + j + "일" + ".txt", Meallib.parsed[i][j]);
-                    }
-                }
-                ran = true;
-                return Meallib.parsed[mtime][mdate];
-            } else {// 네트워크 문제
+    String taskstartmanager(String addr, int mtime, int mdate, int myear, int imonth) {
+        String mmonth = adds0tomonth(imonth);
+        filepathcheck(kongjugopath);
+        Context ct = getActivity();
+        netload nl = new netload();
+        if (nl.Checknetwork(ct) && !(schm == imonth)) {// 네트워크 체크<--true로 락걸어둠
 
 
-                if (readfile(kongjugopath, "Monthcheck.txt").equals((cal.get(Calendar.MONTH) + 1) + "")) {// 현재 유효한 데이터인지
-                    // 확인함
+            Log.v("Thread Address", addr + "&schYm=" + myear + mmonth + "/n/n");
+            Meallib ml = new Meallib(addr + "&schYm=" + myear + mmonth, imonth);
+            ml.start();
+            try {
+                ml.join();// 불러옴을 확인
+                Log.v("alskdg","asdf");
+                Log.v("meallib ended", ml.parsed[1][1]);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
+            savefile(kongjugopath, "Monthcheck.txt", mmonth);
 
-                    return readfile(kongjugopath, mtime + "," + mmonth + "월" + mdate + "일" + ".txt");
-                } else {
-                    return "인터넷 연결이 필요합니다.";
+            for (int i = 0; i < 3; i++) {// 파일로 저장
+                for (int j = 1; j < general.yoon(imonth) + 1; j++) {
 
-
+                    Log.v("meallib ended", j + "일" + ml.parsed[i][j]);
+                    savefile(kongjugopath, i + "," + mmonth + "월" + j + "일" + ".txt", ml.parsed[i][j]);
                 }
             }
-        }
+            schm = imonth;
+            parsedsave = ml.parsed;
+            return ml.parsed[mtime][mdate];
 
-        private String adds0tomonth(int month) {
-            if (month < 10)
-                return "0" + month;
-            else
-                return month + "";
+        } else {// 네트워크 문제
+            if (schm==imonth) {
+                return parsedsave[mtime][mdate];
+            }
 
-        }
 
-        public int yoon() {
-            int thisyear = cal.get(Calendar.YEAR);
-            int feb;
-            if ((thisyear % 4 == 0) && (thisyear % 100 != 0)
-                    || (thisyear % 400 == 0)) {
-                feb = 29;
-            } else
-                feb = 28;
-            switch (cal.get(Calendar.MONTH) + 1) {
-                case 2:
-                    return feb;
-                case 4:
-                    return 30;
-                case 6:
-                    return 30;
-                case 9:
-                    return 30;
-                case 11:
-                    return 30;
-                default:
-                    return 31;
+            if (readfile(kongjugopath, "Monthcheck.txt").equals(mmonth)) {// 현재 유효한 데이터인지
+                // 확인함
+
+                return readfile(kongjugopath, mtime + "," + mmonth + "월" + mdate + "일" + ".txt");
+            } else {
+                return "인터넷 연결이 필요합니다.";
+
+
             }
         }
+    }
 
-        private void filepathcheck(String path) {
-            File dir = new File(path);
-            if (!dir.exists()) {
-                Log.v("pathcheck", path + "not exist");
-                dir.mkdir();
-            }
+    private String adds0tomonth(int month) {
+        if (month < 10)
+            return "0" + month;
+        else
+            return month + "";
+
+    }
+
+
+    private void filepathcheck(String path) {
+        File dir = new File(path);
+        if (!dir.exists()) {
+            Log.v("pathcheck", path + "not exist");
+            dir.mkdir();
         }
+    }
 
-        private void savefile(String path, String filename, String put) {
-            File f = new File(filename);// 날짜데이터파일 저장
+    private void savefile(String path, String filename, String put) {
+            File f = new File(path + filename);// 날짜데이터파일 저장
             FileWriter fw;
             Log.v("fileWriter", path + filename + " writing started");
             try {
@@ -207,9 +210,9 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
                 e.printStackTrace();
             }
 
-        }
+    }
 
-        private String readfile(String path, String filename) {
+    private String readfile(String path, String filename) {
             File f = new File(path + filename);
             if (!f.exists()) {
                 Log.v("filecheck", filename + "not exist");
@@ -235,6 +238,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
                 e.printStackTrace();
             }
             return sb.toString();
-        }
     }
+
+}
 

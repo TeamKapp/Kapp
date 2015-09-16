@@ -9,16 +9,6 @@ import android.widget.TextView;
 
 
 public class NoticeFragment extends Fragment {
-    public static WordFragment newInstance(int position) {
-
-        WordFragment f = new WordFragment();
-        Bundle b = new Bundle();
-        b.putInt("position", position);
-
-        f.setArguments(b);
-
-        return f;
-    }
 
     public String[][] wordmean = new String[2][5];// word:0/mean:1
     TextView tv;

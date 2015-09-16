@@ -17,17 +17,7 @@ import org.w3c.dom.Text;
 import java.util.Calendar;
 
 public class DdayFragment extends Fragment{
-
-    public static DdayFragment newInstance(int position) {
-
-        DdayFragment f = new DdayFragment();
-        Bundle b = new Bundle();
-        b.putInt("position", position);
-
-        f.setArguments(b);
-
-        return f;
-    }
+    
     public Calendar calendar, mid1st, last1st, mid2nd, last2nd;
     public String ddaytxt;
     customDialog customdialog;
@@ -103,8 +93,8 @@ public class DdayFragment extends Fragment{
         mid2nd = Calendar.getInstance();
         last1st = Calendar.getInstance();
         last2nd = Calendar.getInstance();
-        mid1st.set(2015, 3, 29);
-        last1st.set(2015, 5, 30);
+        mid1st.set(2015, 8, 23);
+        last1st.set(2015, 11, 14);
         long mid1stlong = (mid1st.getTimeInMillis())/(1000*24*60*60);
         last1st.getTimeInMillis();
         long last1stlong = (last1st.getTimeInMillis())/(1000*24*60*60);
@@ -125,7 +115,7 @@ public class DdayFragment extends Fragment{
             d_daysusitxt.setText("기말고사");
         }
         else {
-            d_daysusi.setText("여름방학");
+            d_daysusi.setText("없어");
         }
     }
     
