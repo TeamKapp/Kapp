@@ -1,35 +1,23 @@
 package project.kapp;
 
-import android.content.res.Configuration;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.widget.DrawerLayout;
+import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.ViewDebug;
-import android.widget.Button;
-import android.widget.RelativeLayout;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener{
 
     Toolbar toolbar;
-    DrawerLayout drawerLayout;
-    ActionBarDrawerToggle toggle;
-    FragmentTransaction ft;
-    FragmentManager fm;
     private RiceFragment riceFragment = new RiceFragment();
     private TimetableFragment timetableFragment = new TimetableFragment();
     private DdayFragment ddayFragment = new DdayFragment();
     private WordFragment wordFragment = new WordFragment();
     private IntroduceFragment introduceFragment = new IntroduceFragment();
     private DeveloperIntroFragment developintroFragment = new DeveloperIntroFragment();
-
-    RelativeLayout rl_drawer;
-
-    Button Nbtn1, Nbtn2, Nbtn3, Nbtn4, Nbtn5, Nbtn6;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,63 +26,42 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
 
         toolbar = (Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
-        drawerLayout = (DrawerLayout)findViewById(R.id.drawerlayout);
-        rl_drawer = (RelativeLayout) findViewById(R.id.drawer);
-        toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.app_name, R.string.app_name);
-        drawerLayout.setDrawerListener(toggle);
 
-        Nbtn1 = (Button)rl_drawer.findViewById(R.id.btn1);
-        Nbtn2 = (Button)rl_drawer.findViewById(R.id.btn2);
-        Nbtn3 = (Button)rl_drawer.findViewById(R.id.btn3);
-        Nbtn4 = (Button)rl_drawer.findViewById(R.id.btn4);
-        Nbtn5 = (Button)rl_drawer.findViewById(R.id.btn5);
-        Nbtn6 = (Button)rl_drawer.findViewById(R.id.btn6);
-        for(int i=0; i<6; i++ ){
-            findViewById(R.id.btn1+i).setOnClickListener(this); }
+        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        pager.setAdapter(new MainSlideAdapter(getSupportFragmentManager()));
 
-        fm = getSupportFragmentManager();
 
-        if (findViewById(R.id.container) != null) {
-            if (savedInstanceState != null) {return;}
-            riceFragment.setArguments(getIntent().getExtras());
-            getSupportFragmentManager().beginTransaction().add(R.id.container, riceFragment).commit();
+
+        }
+
+    public static class MainSlideAdapter extends FragmentPagerAdapter {
+
+        public MainSlideAdapter(FragmentManager fm) {
+            super(fm);
+        }
+
+        @Override
+        public int getCount() {
+            return 4;
+        }
+
+        public Fragment getItem(int position) {
+            switch (position) {
+                case 0:
+                    return RiceFragment.newInstance(position);
+                case 1:
+                    return TimetableFragment.newInstance(position);
+                case 2:
+                    return DdayFragment.newInstance(position);
+                case 3:
+                    return MoreFragment.newInstance(position);
+                default:
+                    return null;
+            }
         }
     }
     @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-        toggle.syncState();
-    }
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-        toggle.onConfigurationChanged(newConfig);
-    }
-    @Override
-    public void onClick(View v) {
-        ft = getSupportFragmentManager().beginTransaction();
-        switch (v.getId()){
-            case R.id.btn1:
-                ft.replace(R.id.container, riceFragment);
-                break;
-            case R.id.btn2:
-                ft.replace(R.id.container, timetableFragment);
-                break;
-            case R.id.btn3:
-                ft.replace(R.id.container, ddayFragment);
-                break;
-            case R.id.btn4:
-                ft.replace(R.id.container, wordFragment);
-                break;
-            case R.id.btn5:
-                ft.replace(R.id.container, introduceFragment);
-                break;
-            case R.id.btn6:
-                ft.replace(R.id.container, developintroFragment);
-                break;
-        }
-        ft.addToBackStack(null);
-        ft.commit();
-        drawerLayout.closeDrawers();
+    public void onClick(View view){
+
     }
 }

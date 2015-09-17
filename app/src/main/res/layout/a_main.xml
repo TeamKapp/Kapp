@@ -1,31 +1,21 @@
-<android.support.v4.widget.DrawerLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/drawerlayout"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <LinearLayout
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolBar"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolBar"
-            android:layout_height="wrap_content"
-            android:layout_width="match_parent"
-            android:elevation="4dp"
-            android:minHeight="?attr/actionBarSize"
-            android:background="@color/blue"/>
-        <FrameLayout
-            android:id="@+id/container"
-            android:background="#bababa"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
+        android:minHeight="?attr/actionBarSize"
+        android:background="@color/blue"/>
     <include
-        layout="@layout/a_main_drawer"
-        android:id="@+id/drawer"
-        android:layout_width="280dp"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"/>
-</android.support.v4.widget.DrawerLayout>
+        />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+</LinearLayout>
 
 

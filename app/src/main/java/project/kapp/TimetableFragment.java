@@ -51,6 +51,16 @@ public class TimetableFragment extends Fragment {
 
     SharedPreferences ttset;
     SharedPreferences.Editor tteditor;
+
+    public static TimetableFragment newInstance(int num) {
+        TimetableFragment f = new TimetableFragment();
+        Bundle args = new Bundle();
+        args.putInt("num", num);
+        f.setArguments(args);
+
+        return f;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {

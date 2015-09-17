@@ -52,10 +52,17 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
     private ViewGroup seedaterice;
     private View view;
 
+    public static RiceFragment newInstance(int num) {
+        RiceFragment f = new RiceFragment();
+        Bundle args = new Bundle();
+        args.putInt("num", num);
+        f.setArguments(args);
+        return f;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.v("KappLog", "RiceFragment Started");
-
 
         view = inflater.inflate(R.layout.f_rice, container, false);
         gestureDetector = new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener());

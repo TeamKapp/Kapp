@@ -18,13 +18,10 @@ import java.util.regex.Pattern;
 public class WordFragment extends Fragment {
 
     public static WordFragment newInstance(int position) {
-
         WordFragment f = new WordFragment();
         Bundle b = new Bundle();
         b.putInt("position", position);
-
         f.setArguments(b);
-
         return f;
     }
 

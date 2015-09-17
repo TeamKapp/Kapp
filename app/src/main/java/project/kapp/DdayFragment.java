@@ -27,6 +27,14 @@ public class DdayFragment extends Fragment{
     SharedPreferences ddayset;
     SharedPreferences.Editor ddayeditor;
 
+    public static DdayFragment newInstance(int num) {
+        DdayFragment f = new DdayFragment();
+        Bundle args = new Bundle();
+        args.putInt("num", num);
+        f.setArguments(args);
+        return f;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
         ddayset = getActivity().getSharedPreferences("ddayset", 0);
