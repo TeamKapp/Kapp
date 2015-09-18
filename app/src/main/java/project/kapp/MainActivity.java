@@ -4,20 +4,19 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 
 public class MainActivity extends ActionBarActivity implements View.OnClickListener{
 
     Toolbar toolbar;
-    private RiceFragment riceFragment = new RiceFragment();
-    private TimetableFragment timetableFragment = new TimetableFragment();
-    private DdayFragment ddayFragment = new DdayFragment();
-    private WordFragment wordFragment = new WordFragment();
-    private IntroduceFragment introduceFragment = new IntroduceFragment();
-    private DeveloperIntroFragment developintroFragment = new DeveloperIntroFragment();
+    Button ricebtn, ttablebtn, ddaybtn, morebtn;
+    ViewPager pager;
+    FragmentTransaction ft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,11 +26,18 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         toolbar = (Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
 
-        ViewPager pager = (ViewPager) findViewById(R.id.pager);
+        pager = (ViewPager) findViewById(R.id.pager);
         pager.setAdapter(new MainSlideAdapter(getSupportFragmentManager()));
 
-
-
+        ricebtn = (Button)findViewById(R.id.main_rice_btn);
+        ricebtn.setOnClickListener(this);
+        ricebtn.setSelected(true);
+        ttablebtn = (Button)findViewById(R.id.main_ttable_btn);
+        ttablebtn.setOnClickListener(this);
+        ddaybtn = (Button)findViewById(R.id.main_dday_btn);
+        ddaybtn.setOnClickListener(this);
+        morebtn = (Button)findViewById(R.id.main_more_btn);
+        morebtn.setOnClickListener(this);
         }
 
     public static class MainSlideAdapter extends FragmentPagerAdapter {
@@ -62,6 +68,35 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     }
     @Override
     public void onClick(View view){
-
+        switch(view.getId()) {
+            case R.id.main_rice_btn:
+                pager.setCurrentItem(0);
+                ricebtn.setSelected(true);
+                ttablebtn.setSelected(false);
+                ddaybtn.setSelected(false);
+                morebtn.setSelected(false);
+                break;
+            case R.id.main_ttable_btn:
+                pager.setCurrentItem(1);
+                ricebtn.setSelected(false);
+                ttablebtn.setSelected(true);
+                ddaybtn.setSelected(false);
+                morebtn.setSelected(false);
+                break;
+            case R.id.main_dday_btn:
+                pager.setCurrentItem(2);
+                ricebtn.setSelected(false);
+                ttablebtn.setSelected(false);
+                ddaybtn.setSelected(true);
+                morebtn.setSelected(false);
+                break;
+            case R.id.main_more_btn:
+                pager.setCurrentItem(3);
+                ricebtn.setSelected(false);
+                ttablebtn.setSelected(false);
+                ddaybtn.setSelected(false);
+                morebtn.setSelected(true);
+                break;
+        }
     }
 }

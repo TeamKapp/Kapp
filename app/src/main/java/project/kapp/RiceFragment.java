@@ -93,7 +93,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        Button toda = (Button) view.findViewById(R.id.back_today);
+        Button toda = (Button) view.findViewById(R.id.today_date);
         toda.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
                 pd = cal.get(Calendar.DATE);
@@ -128,10 +128,9 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
         tv.setVerticalScrollBarEnabled(true);
         tv.setMovementMethod(new ScrollingMovementMethod());
         tv.setText(taskstartmanager(address, 2, date, year, month + 1).replace('\n', ' '));
-/*여기를 활성화시켜서 날짜박스 추가
-        tv = (TextView) view.findViewById(R.id.rice_datebox);
-        tv.setText(year+"년 "+month+"월 "+date+"일");
-*/
+
+        tv = (TextView) view.findViewById(R.id.today_date);
+        tv.setText(year+"년 "+(month+1)+"월 "+date+"일");
    }
 
     int schm;

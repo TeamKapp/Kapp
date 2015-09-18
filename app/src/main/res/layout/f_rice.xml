@@ -7,22 +7,31 @@
         android:id="@+id/rice_btn_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginRight="4dp"
-        android:layout_marginLeft="4dp">
+        android:layout_margin="8dp">
         <Button
-            android:id="@+id/back_today"
+            android:id="@+id/today_date"
             android:layout_width="wrap_content"
-            android:layout_weight="2"
+            android:layout_weight="4"
             android:layout_height="wrap_content"
+            android:background="@drawable/s_mainbtnstate"
+            android:elevation="2dp"
+            android:padding="0dp"
+            android:textStyle="bold"
             android:text="오늘로 가기"
-            android:textSize="16sp"/>
+            android:textSize="12sp"
+            android:textColor="@color/white"/>
         <Button
             android:id="@+id/next_day"
             android:layout_width="wrap_content"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="내일밥"
-            android:textSize="16sp"/>
+            android:layout_marginLeft="4dp"
+            android:background="@drawable/s_mainbtnstate"
+            android:elevation="2dp"
+            android:textStyle="bold"
+            android:text="내일"
+            android:textSize="12sp"
+            android:textColor="@color/white"/>
         </LinearLayout>
     <LinearLayout
         android:layout_below="@id/rice_btn_container"
@@ -32,7 +41,6 @@
         android:layout_marginRight="8dp"
         android:layout_marginLeft="8dp"
         android:orientation="vertical">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,12 +56,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
                     android:text="아침"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="#262626"
-                    android:padding="12dp"/>
+                    android:textColor="@color/ddgray"
+                    android:layout_marginLeft="8dp"
+                    android:padding="8dp"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/rice_mor_txt"
@@ -84,12 +92,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
                     android:text="점심"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="#262626"
-                    android:padding="12dp"/>
+                    android:textColor="@color/ddgray"
+                    android:layout_marginLeft="8dp"
+                    android:padding="8dp"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/rice_lau_txt"
@@ -120,12 +128,12 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="4dp"
                     android:text="저녁"
                     android:textSize="16sp"
                     android:textStyle="bold"
-                    android:textColor="#262626"
-                    android:padding="12dp"/>
+                    android:textColor="@color/ddgray"
+                    android:layout_marginLeft="8dp"
+                    android:padding="8dp"/>
             </LinearLayout>
             <TextView
                 android:id="@+id/rice_din_txt"
