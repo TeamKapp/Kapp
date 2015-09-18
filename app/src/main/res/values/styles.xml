@@ -1,15 +1,23 @@
 <resources>
-
+    <color name="wblue">#1976D2</color>
     <color name="blue">#004c99</color>
     <color name="dblue">#1A237E</color>
-    <color name="ddblue">#1976D2</color>
+    <color name="white">#eeeeee</color>
+    <color name="dwhite">#dcdcdc</color>
+    <color name="ddwhite">#9e9e9e</color>
+    <color name="bggray">#b2b2b2</color>
+    <color name="gray">#5e5e5e</color>
+    <color name="dgray">#414141</color>
+    <color name="ddgray">#252525</color>
+    <color name="black">#000000</color>
+    <color name="clear">#00000000</color>
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <item name="colorAccent">#FF4081</item>
         <item name="colorPrimary">@color/blue</item>
-        <item name="colorPrimaryDark">#b31A237E</item>
+        <item name="colorPrimaryDark">@color/dblue</item>
         <item name="colorControlHighlight">#00CC55</item>
-        <item name="colorControlNormal">#eeeeee</item>
+        <item name="colorControlNormal">@color/white</item>
         <item name="android:editTextColor">#000000</item>
 
     </style>

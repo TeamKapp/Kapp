@@ -17,7 +17,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="#000000"
+                android:textColor="@color/ddgray"
                 android:textSize="14sp"
                 android:text="서버를 구할 수 없어서 구현을 할 수 없었습니다...\n 후원문의 : jdd04026@naver.com"/>
         </LinearLayout>

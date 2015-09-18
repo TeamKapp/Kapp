@@ -25,14 +25,14 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="8dp"
                 android:elevation="4dp"
-                android:background="@drawable/d_whitebox">
+                android:background="@color/white">
                 <GridView
                     android:id="@+id/tt_gridview"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:numColumns="6"
                     android:padding="16dp"
-                    android:textColor="#eeeeee"/>
+                    android:textColor="@color/white"/>
                 <Button
                     android:id="@+id/tt_btn"
                     android:layout_width="match_parent"

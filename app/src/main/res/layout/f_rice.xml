@@ -37,7 +37,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:background="#dcdcdc"
+            android:background="@color/dwhite"
             android:elevation="4dp"
             android:layout_weight="1">
             <LinearLayout
@@ -65,15 +65,15 @@
                 android:layout_marginBottom="4dp"
                 android:padding="16dp"
                 android:gravity="center"
-                android:background="#eeeeee"
+                android:background="@color/white"
                 android:textSize="12sp"
-                android:textColor="#515151"/>
+                android:textColor="@color/dgray"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
-            android:background="#dcdcdc"
+            android:background="@color/dwhite"
             android:elevation="4dp"
             android:layout_weight="1">
             <LinearLayout
@@ -101,14 +101,14 @@
                 android:layout_marginBottom="4dp"
                 android:padding="16dp"
                 android:gravity="center"
-                android:background="#eeeeee"
+                android:background="@color/white"
                 android:textSize="12sp"
-                android:textColor="#515151"/>
+                android:textColor="@color/dgray"/>
         </RelativeLayout>
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#dcdcdc"
+            android:background="@color/dwhite"
             android:layout_marginBottom="8dp"
             android:elevation="4dp"
             android:layout_weight="1">
@@ -137,9 +137,9 @@
                 android:layout_marginBottom="4dp"
                 android:padding="16dp"
                 android:gravity="center"
-                android:background="#eeeeee"
+                android:background="@color/white"
                 android:textSize="12sp"
-                android:textColor="#515151"/>
+                android:textColor="@color/dgray"/>
         </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>
