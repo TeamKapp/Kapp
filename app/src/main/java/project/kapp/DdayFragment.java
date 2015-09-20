@@ -123,7 +123,8 @@ public class DdayFragment extends Fragment{
             d_daysusitxt.setText("기말고사");
         }
         else {
-            d_daysusi.setText("없어");
+            d_daysusi.setText("D-?");
+            d_daysusitxt.setText("방학");
         }
     }
     

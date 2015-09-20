@@ -17,8 +17,8 @@
             android:elevation="2dp"
             android:padding="0dp"
             android:textStyle="bold"
-            android:text="오늘로 가기"
-            android:textSize="12sp"
+            android:text="날짜"
+            android:textSize="14sp"
             android:textColor="@color/white"/>
         <Button
             android:id="@+id/next_day"
@@ -30,7 +30,7 @@
             android:elevation="2dp"
             android:textStyle="bold"
             android:text="내일"
-            android:textSize="12sp"
+            android:textSize="14sp"
             android:textColor="@color/white"/>
         </LinearLayout>
     <LinearLayout
@@ -57,7 +57,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="아침"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/ddgray"
                     android:layout_marginLeft="8dp"
@@ -68,13 +68,10 @@
                 android:layout_below="@id/rice_ll1"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginBottom="4dp"
                 android:padding="16dp"
                 android:gravity="center"
                 android:background="@color/white"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textColor="@color/dgray"/>
         </RelativeLayout>
         <RelativeLayout
@@ -93,7 +90,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="점심"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/ddgray"
                     android:layout_marginLeft="8dp"
@@ -104,13 +101,10 @@
                 android:layout_below="@id/rice_ll2"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginBottom="4dp"
                 android:padding="16dp"
                 android:gravity="center"
                 android:background="@color/white"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textColor="@color/dgray"/>
         </RelativeLayout>
         <RelativeLayout
@@ -129,7 +123,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="저녁"
-                    android:textSize="16sp"
+                    android:textSize="18sp"
                     android:textStyle="bold"
                     android:textColor="@color/ddgray"
                     android:layout_marginLeft="8dp"
@@ -140,13 +134,10 @@
                 android:layout_below="@id/rice_ll3"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginRight="4dp"
-                android:layout_marginLeft="4dp"
-                android:layout_marginBottom="4dp"
                 android:padding="16dp"
                 android:gravity="center"
                 android:background="@color/white"
-                android:textSize="12sp"
+                android:textSize="16sp"
                 android:textColor="@color/dgray"/>
         </RelativeLayout>
     </LinearLayout>

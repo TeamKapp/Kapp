@@ -9,11 +9,54 @@
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:minHeight="?attr/actionBarSize"
+        android:elevation="8dp"
         android:background="@color/blue"/>
-    <include
-        layout="@layout/l_tab"
+    <LinearLayout
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:elevation="4dp">
+        <Button
+            android:id="@+id/main_rice_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="4dp"
+            android:background="@drawable/s_tabbtnstate"
+            android:textStyle="bold"
+            android:text="급식"
+            android:textColor="@color/blue"/>
+        <Button
+            android:id="@+id/main_ttable_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="4dp"
+            android:background="@drawable/s_tabbtnstate"
+            android:textStyle="bold"
+            android:text="시간표"
+            android:textColor="@color/dgray"/>
+        <Button
+            android:id="@+id/main_dday_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="4dp"
+            android:background="@drawable/s_tabbtnstate"
+            android:textStyle="bold"
+            android:text="D-day"
+            android:textColor="@color/dgray"/>
+        <Button
+            android:id="@+id/main_more_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:padding="4dp"
+            android:background="@drawable/s_tabbtnstate"
+            android:textStyle="bold"
+            android:text="더보기"
+            android:textColor="@color/dgray"/>
+    </LinearLayout>
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="match_parent"

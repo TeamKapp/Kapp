@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,7 +15,6 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
     Toolbar toolbar;
     Button ricebtn, ttablebtn, ddaybtn, morebtn;
     ViewPager pager;
-    FragmentTransaction ft;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +36,21 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
         ddaybtn.setOnClickListener(this);
         morebtn = (Button)findViewById(R.id.main_more_btn);
         morebtn.setOnClickListener(this);
+
+        pager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+            }
+            @Override
+            public void onPageSelected(int position) {
+                TabbtnColordefault(position-1);
+                TabbtnColordefault(position+1);
+                TabbtnColorselected(position);
+            }
+            @Override
+            public void onPageScrollStateChanged(int state) {
+            }
+        });
         }
 
     public static class MainSlideAdapter extends FragmentPagerAdapter {
@@ -66,37 +79,45 @@ public class MainActivity extends ActionBarActivity implements View.OnClickListe
             }
         }
     }
+    public void TabbtnColordefault(int a){
+        if (a==0){
+            ricebtn.setTextColor(getResources().getColor(R.color.ddgray));}
+        else if (a==1){
+            ttablebtn.setTextColor(getResources().getColor(R.color.ddgray));}
+        else if (a==2){
+             ddaybtn.setTextColor(getResources().getColor(R.color.ddgray));}
+        else if (a==3){
+            morebtn.setTextColor(getResources().getColor(R.color.ddgray));}
+        else{
+        }
+    }
+    public void TabbtnColorselected(int a){
+        if (a==0){
+            ricebtn.setTextColor(getResources().getColor(R.color.blue));}
+        else if (a==1){
+            ttablebtn.setTextColor(getResources().getColor(R.color.blue));}
+        else if (a==2){
+            ddaybtn.setTextColor(getResources().getColor(R.color.blue));}
+        else if (a==3){
+            morebtn.setTextColor(getResources().getColor(R.color.blue));}
+    }
     @Override
     public void onClick(View view){
+        TabbtnColordefault(pager.getCurrentItem());
         switch(view.getId()) {
             case R.id.main_rice_btn:
                 pager.setCurrentItem(0);
-                ricebtn.setSelected(true);
-                ttablebtn.setSelected(false);
-                ddaybtn.setSelected(false);
-                morebtn.setSelected(false);
                 break;
             case R.id.main_ttable_btn:
                 pager.setCurrentItem(1);
-                ricebtn.setSelected(false);
-                ttablebtn.setSelected(true);
-                ddaybtn.setSelected(false);
-                morebtn.setSelected(false);
                 break;
             case R.id.main_dday_btn:
                 pager.setCurrentItem(2);
-                ricebtn.setSelected(false);
-                ttablebtn.setSelected(false);
-                ddaybtn.setSelected(true);
-                morebtn.setSelected(false);
                 break;
             case R.id.main_more_btn:
                 pager.setCurrentItem(3);
-                ricebtn.setSelected(false);
-                ttablebtn.setSelected(false);
-                ddaybtn.setSelected(false);
-                morebtn.setSelected(true);
                 break;
         }
+        TabbtnColorselected(pager.getCurrentItem());
     }
 }

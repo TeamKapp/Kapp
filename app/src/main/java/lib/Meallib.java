@@ -1,7 +1,6 @@
 package lib;
 
 import android.util.Log;
-
 import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -38,11 +37,9 @@ public class Meallib extends Thread {
         }
 
     }
-
 	/*
 	 * 급식 파싱하기 일주일치 식단
 	 */
-
     protected static String[][] Mealparseweek() {// 입력값:html문서,
         // 요일값,
         // 출력메뉴(1:날짜,
