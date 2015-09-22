@@ -2,8 +2,10 @@ package project.kapp;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
+import android.widget.FrameLayout;
 
 /**
  * Created by FullOfOrange on 15. 9. 20..
@@ -11,22 +13,40 @@ import android.support.v7.widget.Toolbar;
 public class GotoMoreActivity extends ActionBarActivity{
 
     private Toolbar toolbar;
-    private String getFragment;
+    String getFragment;
+    FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.a_main);
+        setContentView(R.layout.a_gotomore);
 
         toolbar = (Toolbar)findViewById(R.id.toolBar);
         setSupportActionBar(toolbar);
 
-        Intent intent = getIntent();
-        getFragment = intent.getStringExtra("FramgentName");
-        if(getFragment == "학사일정"){}
-        else if(getFragment == "단어"){WordFragment }
-        else if(getFragment == "공지사항"){}
-        else if(getFragment == "학교소개"){}
-        else if(getFragment == "개발자정보"){}
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        getFragment = getIntent().getExtras().getString("FragmentName");
+        int getFragmentNum = getIntent().getExtras().getInt("FragmentNum");
+        if(getFragmentNum==0){
+            BScheduleFragment bScheduleFragment = new BScheduleFragment();
+            fragmentTransaction.add(R.id.moreframe, bScheduleFragment);
+        }
+        else if(getFragmentNum==1){
+            WordFragment wordFragment = new WordFragment();
+            fragmentTransaction.add(R.id.moreframe, wordFragment).commit();
+        }
+        else if(getFragmentNum==2){
+            IntroduceFragment introduceFragment = new IntroduceFragment();
+            fragmentTransaction.add(R.id.moreframe, introduceFragment).commit();
+        }
+        else if(getFragmentNum==3){
+            WordFragment wordFragment = new WordFragment();
+            fragmentTransaction.add(R.id.moreframe, wordFragment).commit();
+        }
+        else if(getFragmentNum==4){
+            DeveloperIntroFragment developerintroFragment = new DeveloperIntroFragment();
+            fragmentTransaction.add(R.id.moreframe, developerintroFragment).commit();
+        }
+        getSupportActionBar().setTitle(getFragment);
     }
 }

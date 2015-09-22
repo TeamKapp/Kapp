@@ -66,7 +66,6 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
 
         view = inflater.inflate(R.layout.f_rice, container, false);
         gestureDetector = new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener());
-        //ricedate = (TextView) view.findViewById(R.id.noti_txt);
 
         mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
         outputmanage(pd,pm,py);

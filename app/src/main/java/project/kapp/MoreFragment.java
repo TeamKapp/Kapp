@@ -9,7 +9,10 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -18,9 +21,9 @@ import java.util.ArrayList;
  */
 public class MoreFragment extends Fragment{
 
-    private ListView listview;
-    private ArrayAdapter<String> arrayAdapter;
-    private String[] datalist = {"학사일정","단어","공지사항","학교소개","개발자정보"};
+    public ListView listview;
+    public ArrayAdapter<String> arrayAdapter;
+    public String[] datalist = {"학사일정","단어","공지사항","학교소개","개발자정보"};
 
     public static MoreFragment newInstance(int num) {
         MoreFragment f = new MoreFragment();
@@ -29,13 +32,17 @@ public class MoreFragment extends Fragment{
         f.setArguments(args);
         return f;
     }
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        arrayAdapter = new ArrayAdapter<>(getActivity(), R.layout.l_morelist_item, R.id.text1, datalist);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.f_more, container, false);
 
-        arrayAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1,datalist);
         listview = (ListView)view.findViewById(R.id.morelist);
         listview.setAdapter(arrayAdapter);
         listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -43,7 +50,8 @@ public class MoreFragment extends Fragment{
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(getActivity(), GotoMoreActivity.class);
                 Bundle extras = new Bundle();
-                extras.putString("FragmentName",((TextView)view).getText().toString());
+                extras.putString("FragmentName", parent.getItemAtPosition(position).toString());
+                extras.putInt("FragmentNum", position);
                 intent.putExtras(extras);
                 startActivity(intent);
             }

@@ -123,7 +123,7 @@ public class TimetableFragment extends Fragment {
 
     @SuppressWarnings("deprecation")
     private void datas(int datanum){
-        String string = null;
+        String string = " ";
         switch(datanum){
             case 11: string = "onea"; break;
             case 12: string = "oneb"; break;
