@@ -1,10 +1,5 @@
 package lib;
 
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-
 public class wordlib extends Thread {// 사용법: word[]와 mean[]에 각각 값을 세팅한 후
     // turnout()메소드를 실행하면 알아서 이차원배열으로 출력됨.
 

@@ -5,25 +5,34 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
 
+import net.htmlparser.jericho.Element;
+import net.htmlparser.jericho.HTMLElementName;
+import net.htmlparser.jericho.Source;
+
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
  * Created by kdve on 15. 1. 31.
  */
 public class netload {
-    public netload(){
+    public netload() {
     }
+
     public String loadhtml(String address) {// 주소
         // http://hes.cne.go.kr/sts_sci_md01_003.do?schulCode=N100000131&schulCrseScCode=4&schulKndScCode=04&schMmealScCode=1
         return loadweb(address, null);
     }
-    public String loadhtml_tag(String address){
+
+    public String loadhtml_tag(String address) {
         return loadweb(address, "</html>");
     }
-    String loadweb(String address, String tag){
+
+    String loadweb(String address, String tag) {
         StringBuffer Html = new StringBuffer();// 파싱 이전 Html 문서
         try {
             URL url = new URL(address);
@@ -36,7 +45,7 @@ public class netload {
                     BufferedReader br = new BufferedReader(
                             new InputStreamReader(conn.getInputStream()));
 
-                    for (;;) {
+                    for (; ; ) {
                         String line = br.readLine();
 
                         if (line == tag) {
@@ -55,6 +64,7 @@ public class netload {
             return null;
         }
     }
+
     public Boolean Checknetwork(Context context) {
         ConnectivityManager manager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo mobile = manager
@@ -65,13 +75,13 @@ public class netload {
                 .getNetworkInfo(ConnectivityManager.TYPE_WIMAX);
         boolean blte_4g = false;
         if (lte_4g != null)
-            blte_4g = (lte_4g.isConnected()&&lte_4g.isAvailable());
-        if ((mobile.isConnected()&&mobile.isAvailable()) || (wifi.isConnected()&&wifi.isAvailable()) || blte_4g)
+            blte_4g = (lte_4g.isConnected() && lte_4g.isAvailable());
+        if ((mobile.isConnected() && mobile.isAvailable()) || (wifi.isConnected() && wifi.isAvailable()) || blte_4g)
             return true;
         else {
-            return false;}
+            return false;
+        }
     }
-
 
 
 }
