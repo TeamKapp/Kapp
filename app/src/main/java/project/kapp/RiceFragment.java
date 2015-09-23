@@ -37,20 +37,11 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
     Calendar cal = Calendar.getInstance();
     static boolean ran = false;
 
-    private static final int SWIPE_MIN_DISTANCE = 120;
-    private static final int SWIPE_MAX_OFF_PATH = 250;
-    private static final int SWIPE_THRESHOLD_VELOCITY = 200;
     int pd = cal.get(Calendar.DATE);
     int pm = cal.get(Calendar.MONTH);
     int py = cal.get(Calendar.YEAR);
-    private int mShortAnimationDuration;
 
-    private GestureDetector gestureDetector;
-
-    private TextView tv, riceMorning, riceLaunch, riceDinner, ricedate;
-    private Button prevBtn, nextBtn, seemoreExitBtn;
-    private RelativeLayout seemorerice_layout;
-    private ViewGroup seedaterice;
+    private TextView tv;
     private View view;
 
     public static RiceFragment newInstance(int num) {
@@ -66,9 +57,6 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
         Log.v("KappLog", "RiceFragment Started");
 
         view = inflater.inflate(R.layout.f_rice, container, false);
-        gestureDetector = new GestureDetector(getActivity(), new GestureDetector.SimpleOnGestureListener());
-
-        mShortAnimationDuration = getResources().getInteger(android.R.integer.config_shortAnimTime);
         outputmanage(pd,pm,py);
 
 
