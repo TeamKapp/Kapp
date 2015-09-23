@@ -26,10 +26,8 @@ public class Meallib extends Thread {
 
     public void run() {
         netload nl = new netload();
-<<<<<<< HEAD
         html = nl.loadhtml(address);
         parsed = mealparseauto();
-=======
         Log.i("server Check","proc"+html);
 
         html = nl.loadhtml_tag(address);
@@ -62,7 +60,6 @@ public class Meallib extends Thread {
             parsed = mealparseauto();
         }
 
->>>>>>> origin/master
     }
 
     static String[][] mealparseauto() {// 이거시 바로 주소만 넣으면 알아숴 주간급식인쥐 월간급식인쥐 판별
