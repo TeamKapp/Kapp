@@ -100,10 +100,6 @@ public class WordFragment extends Fragment {
             Matcher matcherwm;
             matcherwm = patwm.matcher(wm);
             return matcherwm.find();
-
         }
-
-
-
     }
 }
