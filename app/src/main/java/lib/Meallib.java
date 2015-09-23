@@ -20,7 +20,6 @@ public class Meallib extends Thread {
         netload nl = new netload();
         html = nl.loadhtml(address);
         parsed = mealparseauto();
-
     }
 
     static String[][] mealparseauto() {// 이거시 바로 주소만 넣으면 알아서 주간급식인지 월간급식인지 판별하는
