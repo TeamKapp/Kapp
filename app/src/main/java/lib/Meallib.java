@@ -135,7 +135,7 @@ public class Meallib extends Thread {
             }
 
             else {
-                parsed[2][i] = "급식이 읍는 듯 합니다.";
+                parsed[2][i] = "급식 정보가 없습니다.";
             }
 
             regexMatcher.reset();
@@ -148,7 +148,7 @@ public class Meallib extends Thread {
                 j = regexMatcher.start();
 
             } else {
-                parsed[1][i] = "급식이 읍는 듯 합니다.";
+                parsed[1][i] = "급식 정보가 없습니다.";
             }
 
             regexMatcher.reset();
@@ -158,7 +158,7 @@ public class Meallib extends Thread {
                     parsed[0][i] = sb.toString().substring(
                             regexMatcher.end() + 1, j-1);
             } else {
-                parsed[0][i] = "급식이 읍는 듯 합니다.";
+                parsed[0][i] = "급식 정보가 없습니다.";
             }
             regexMatcher.reset();
         }
@@ -195,39 +195,33 @@ public class Meallib extends Thread {
         String[][] parsed = new String[3][36];
         StringBuffer sb = new StringBuffer();// 말하는데로
 
-
         System.out.println(new_address);
         Source sc = new Source(new URL(new_address));
         Element table;
 
         sc.fullSequentialParse();
-        table = sc.getAllElements(HTMLElementName.TR, 2);
-        hp.htmlload();
-        int input=0;
+        for(int i = 0; i<sc.getAllElements(HTMLElementName.TR).size();i++){
 
-        mat = morn.matcher(hp.htmlcut(HTMLElementName.DIV, input));
-        for(;;input++){
-            System.out.println(hp.htmlcut(HTMLElementName.DIV, input));
-            Log.v("input", ""+input);
-
-            if(mat.find()){
+            sb.append(sc.getAllElements(HTMLElementName.TR).get(i).toString());
+        }
+        sc = new Source(sb.toString());
+        int add = sc.getAllElements(HTMLElementName.DIV).size();
+        for(int i = 0; i<add; i++){
+            System.out.println("급식부분을 찾는 중이다."+sc.getAllElements(HTMLElementName.DIV).get(i));
+            if(sc.getAllElements(HTMLElementName.DIV).get(i).toString().matches(".*1.*")){
+                add =i-1;
                 break;
             }
-            else if(hp.htmlcut(HTMLElementName.DIV, input).equals("1")){
-                break;
-            }
-            hp.htmlcut(HTMLElementName.DIV, input);
-            mat = morn.matcher(sb.append(hp.htmlcut(HTMLElementName.DIV, input)));
+
         }
 
 
         for (int i = 1; i<=general.yoon(month); i++) {
-            input++;
             Matcher regexMatcher;
-            Log.v("mealparsemth", i + "");
+            Log.v("mealparsemth_html", i + "");
 
             sb.delete(0, sb.length());
-            regexMatcher = even.matcher(sb.append(hp.htmlcut(HTMLElementName.DIV, input)));
+            regexMatcher = even.matcher(sb.append(sc.getAllElements(HTMLElementName.DIV).get(i+add).toString()));
             int j = sb.length();
 
             if (regexMatcher.find()) {// 시간 태그가 존재하는지 확인
@@ -240,7 +234,7 @@ public class Meallib extends Thread {
             }
 
             else {
-                parsed[2][i] = "급씩씩이가 없는 듯 합니다.";
+                parsed[2][i] = "급식이 없는 듯 합니다.";
             }
 
             regexMatcher.reset();
