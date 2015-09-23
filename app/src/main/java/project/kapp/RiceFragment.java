@@ -23,6 +23,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Calendar;
 
+import lib.FileIO;
 import lib.Meallib;
 import lib.general;
 import lib.netload;
@@ -138,8 +139,9 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
     String parsedsave[][];
 
     String taskstartmanager(String addr, int mtime, int mdate, int myear, int imonth) {
+        FileIO fio = new FileIO();
         String mmonth = adds0tomonth(imonth);
-        filepathcheck(kongjugopath);
+        fio.filepathcheck(kongjugopath);
         Context ct = getActivity();
         netload nl = new netload();
         if (nl.Checknetwork(ct) && !(schm == imonth)) {// 네트워크 체크<--true로 락걸어둠
@@ -157,13 +159,13 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }
-            savefile(kongjugopath, "Monthcheck.txt", mmonth);
+            fio.savefile(kongjugopath, "Monthcheck.txt", mmonth);
 
             for (int i = 0; i < 3; i++) {// 파일로 저장
                 for (int j = 1; j < general.yoon(imonth) + 1; j++) {
 
                     Log.v("meallib ended", j + "일" + ml.parsed[i][j]);
-                    savefile(kongjugopath, i + "," + mmonth + "월" + j + "일" + ".txt", ml.parsed[i][j]);
+                    fio.savefile(kongjugopath, i + "," + mmonth + "월" + j + "일" + ".txt", ml.parsed[i][j]);
                 }
             }
             schm = imonth;
@@ -176,10 +178,10 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
             }
 
 
-            if (readfile(kongjugopath, "Monthcheck.txt").equals(mmonth)) {// 현재 유효한 데이터인지
+            if (fio.readfile(kongjugopath, "Monthcheck.txt").equals(mmonth)) {// 현재 유효한 데이터인지
                 // 확인함
 
-                return readfile(kongjugopath, mtime + "," + mmonth + "월" + mdate + "일" + ".txt");
+                return fio.readfile(kongjugopath, mtime + "," + mmonth + "월" + mdate + "일" + ".txt");
             } else {
                 return "인터넷 연결이 필요합니다.";
 
@@ -197,55 +199,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
     }
 
 
-    private void filepathcheck(String path) {
-        File dir = new File(path);
-        if (!dir.exists()) {
-            Log.v("pathcheck", path + "not exist");
-            dir.mkdir();
-        }
-    }
 
-    private void savefile(String path, String filename, String put) {
-            File f = new File(path + filename);// 날짜데이터파일 저장
-            FileWriter fw;
-            Log.v("fileWriter", path + filename + " writing started");
-            try {
-                fw = new FileWriter(f);
-                fw.write(put);
-                fw.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-
-    }
-
-    private String readfile(String path, String filename) {
-            File f = new File(path + filename);
-            if (!f.exists()) {
-                Log.v("filecheck", filename + "not exist");
-                savefile(path, filename, "NULL");
-            }
-
-            StringBuffer sb = new StringBuffer();
-            Log.v("fileWriter", filename + " reading started");
-            try {// 저장일시 읽어들이기
-                FileInputStream fis = new FileInputStream(path + filename);
-                int n;
-                while ((n = fis.available()) > 0) {
-                    byte b[] = new byte[n];
-                    if (fis.read(b) == -1)
-                        break;
-                    sb.append(new String(b));
-                }
-                fis.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-                System.err.println("Could not find file" + filename);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            return sb.toString();
-    }
 
 }
 
