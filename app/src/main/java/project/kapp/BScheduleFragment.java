@@ -61,7 +61,9 @@ public class BScheduleFragment extends Fragment implements View.OnClickListener{
     }
 
     public void ClickViewAnimation(View view){
+        view = 
 
+        view.setAnimation(TabOutAnima);
     }
 
     public void SwipeTabFadeAnimation(View view1, View view2, View view3, View view4, View view5, View view6, int position){
