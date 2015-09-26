@@ -12,11 +12,11 @@ import java.io.IOException;
  * Created by devnote on 15. 9. 21.
  */
 public class FileIO {
-    public void filepathcheck(String path) {
-        File dir = new File(path);
-        if (!dir.exists()) {
-            Log.v("pathcheck", path + "not exist");
-            dir.mkdir();
+    public void filepathcheck(String fil) {
+        File file1 = new File(fil);
+        if (!file1.exists()) {
+            Log.v("pathcheck", fil + "not exist");
+            file1.mkdir();
         }
     }
 

@@ -9,11 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import lib.netload;
-import lib.wordlib;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import lib.netload;
+import lib.wordlib;
 
 public class WordFragment extends Fragment {
 

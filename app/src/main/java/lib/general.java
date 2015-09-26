@@ -8,7 +8,7 @@ import java.util.Calendar;
 public class general {
     static Calendar cal = Calendar.getInstance();
 
-    public static int yoon(int thisyear) {//어느 달을 입력하면 그 달이 몇일까지 있는지 출력하는 함수
+    public static int yoon(int month, int thisyear) {//어느 달을 입력하면 그 달이 몇일까지 있는지 출력하는 함수
 
         int feb;
         if ((thisyear % 4 == 0) && (thisyear % 100 != 0)
@@ -16,7 +16,7 @@ public class general {
             feb = 29;
         } else
             feb = 28;
-        switch (cal.get(Calendar.MONTH) + 1) {
+        switch (month) {
             case 2:
                 return feb;
             case 4:
