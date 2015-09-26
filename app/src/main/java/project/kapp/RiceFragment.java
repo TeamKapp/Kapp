@@ -1,9 +1,9 @@
 package project.kapp;
 
 import android.annotation.SuppressLint;
-import android.app.Fragment;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,7 +44,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
         f.setArguments(args);
         return f;
     }
-boolean c=true;
+    boolean c=true;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         Log.v("KappLog", "RiceFragment Started");
