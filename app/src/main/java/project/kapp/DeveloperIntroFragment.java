@@ -26,8 +26,8 @@ public class DeveloperIntroFragment extends Fragment {
 
         imageView = (ImageView) view.findViewById(R.id.image);
         tx= (TextView) view.findViewById(R.id.anonymous);
-        alphaanim= AnimationUtils.loadAnimation(getActivity(), R.anim.alphaoutputanim);
-        alphaanim2= AnimationUtils.loadAnimation(getActivity(), R.anim.alphainputanim);
+        alphaanim= AnimationUtils.loadAnimation(getActivity(), R.anim.alpha_output_anim);
+        alphaanim2= AnimationUtils.loadAnimation(getActivity(), R.anim.alpha_input_anim);
         imageView.startAnimation(alphaanim);
         Handler hd=new Handler();
         hd.postDelayed(new Runnable() {

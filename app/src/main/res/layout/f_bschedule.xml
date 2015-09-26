@@ -18,81 +18,11 @@
             android:layout_margin="16dp"
             android:text="2016년 1학기"
             android:textSize="22sp"
-            android:textColor="@color/ddgray"/>
-        <LinearLayout
+            android:textColor="@color/dblue"/>
+        <include
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:orientation="horizontal">
-            <Button
-                android:id="@+id/bs_month_txt1"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:layout_marginLeft="2dp"
-                android:text="1월"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:background="@drawable/s_mainbtnstate"/>
-            <Button
-                android:id="@+id/bs_month_txt2"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:layout_marginLeft="2dp"
-                android:text="1월"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:background="@drawable/s_mainbtnstate"/>
-            <Button
-                android:id="@+id/bs_month_txt3"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:layout_marginLeft="2dp"
-                android:text="1월"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:background="@drawable/s_mainbtnstate"/>
-            <Button
-                android:id="@+id/bs_month_txt4"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:layout_marginLeft="2dp"
-                android:text="1월"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:background="@drawable/s_mainbtnstate"/>
-            <Button
-                android:id="@+id/bs_month_txt5"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:layout_marginLeft="2dp"
-                android:text="1월"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:background="@drawable/s_mainbtnstate"/>
-            <Button
-                android:id="@+id/bs_month_txt6"
-                android:layout_weight="1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginRight="2dp"
-                android:layout_marginLeft="2dp"
-                android:text="1월"
-                android:textSize="18sp"
-                android:textColor="@color/white"
-                android:background="@drawable/s_mainbtnstate"/>
-        </LinearLayout>
+            layout="@layout/l_bs_monthtab"/>
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/bs_recyclerview"
