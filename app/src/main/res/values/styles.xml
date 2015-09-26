@@ -9,6 +9,7 @@
     <color name="gray">#5e5e5e</color>
     <color name="dgray">#414141</color>
     <color name="ddgray">#252525</color>
+    <color name="dddgray">#191919</color>
     <color name="black">#000000</color>
     <color name="clear">#00000000</color>
     <!-- Base application theme. -->
