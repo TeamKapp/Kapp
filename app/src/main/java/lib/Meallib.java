@@ -1,5 +1,6 @@
 package lib;
 
+import android.os.Environment;
 import android.util.Log;
 
 import net.htmlparser.jericho.Element;
@@ -17,21 +18,20 @@ public class Meallib extends Thread {
     static String address;
     public static String html;
     public String[][] parsed;
-    public static int month;
+    public static int month, year;
+    public static String kongjugopath = Environment.getExternalStorageDirectory().getAbsolutePath()+"/Android/kongjugoappData/";
+    public boolean ifpath;
     
-    public Meallib(String addr, int month) {
+    public Meallib(String addr, int month, int year) {
         this.month = month;
+        this.year =year;
         address = addr;
     }
 
     public void run() {
         netload nl = new netload();
         html = nl.loadhtml(address);
-        parsed = mealparseauto();
         Log.i("server Check","proc"+html);
-
-        html = nl.loadhtml_tag(address);
-        Log.i("server Source",""+html);
 
         Pattern patt = Pattern.compile("<html", Pattern.CASE_INSENSITIVE);
         Matcher regexMatcher = patt.matcher(html);
@@ -48,21 +48,43 @@ public class Meallib extends Thread {
 
             parsed = new String[3][36];
             Log.i("server Error","unknown or 500");
-            for (int i = 1; i<=general.yoon(month); i++){
-                parsed[0][i] = "Error";
-                parsed[1][i] = "Error";
-                parsed[2][i] = "Error";
-            }}
+                for (int i = 1; i<=general.yoon(month,year); i++){
+                    parsed[0][i] = "Error";
+                    parsed[1][i] = "(인터넷 연결을 해제해 보세요)";
+                    parsed[2][i] = "Error";
+                }
+                if(!ifpath){
+                    mealsave(month,year);
+                }
+            }
+
+
+            else{
+                mealsave(month,year);
+            }
 
         }
         else {
             Log.i("server NO Error", "Go On");
             parsed = mealparseauto();
+            mealsave(month,year);
         }
 
     }
+    private void mealsave(int imonth, int myear){
+        FileIO fio = new FileIO();
+        fio.filepathcheck(kongjugopath);
+        for (int i = 0; i < 3; i++) {// 파일로 저장
+            for (int j = 1; j < general.yoon(imonth, myear) + 1; j++) {
 
-    static String[][] mealparseauto() {// 이거시 바로 주소만 넣으면 알아숴 주간급식인쥐 월간급식인쥐 판별
+                Log.v("meallib saving..", j + "일" + parsed[i][j]);
+                fio.savefile(kongjugopath, i + "," + myear + "년" + imonth + "월" + j + "일" + ".txt", parsed[i][j]);
+            }
+        }
+    }
+
+
+    static String[][] mealparseauto() {// 이거시 바로 주소만 넣으면 알아숴 주간급식인쥐 월간급식인쥐 판별하는 메솓으
         String[] tokens = address.split("_");
         String ret = tokens[2];
         Log.v("mealparseauto Started.",ret);
@@ -115,7 +137,7 @@ public class Meallib extends Thread {
 
 
 
-        for (int i = 1; i<=general.yoon(month); i++) {
+        for (int i = 1; i<=general.yoon(month,year); i++) {
             
             Log.v("mealparsemth", i+"");
             Matcher regexMatcher;
@@ -196,15 +218,14 @@ public class Meallib extends Thread {
         StringBuffer sb = new StringBuffer();// 말하는데로
 
         System.out.println(new_address);
-        Source sc = new Source(new URL(new_address));
-        Element table;
+        Source sc = new Source(new URL(new_address));//접속
 
         sc.fullSequentialParse();
         for(int i = 0; i<sc.getAllElements(HTMLElementName.TR).size();i++){
 
             sb.append(sc.getAllElements(HTMLElementName.TR).get(i).toString());
         }
-        sc = new Source(sb.toString());
+        sc = new Source(sb.toString().replace("<br />"," "));
         int add = sc.getAllElements(HTMLElementName.DIV).size();
         for(int i = 0; i<add; i++){
             System.out.println("급식부분을 찾는 중이다."+sc.getAllElements(HTMLElementName.DIV).get(i));
@@ -216,7 +237,7 @@ public class Meallib extends Thread {
         }
 
 
-        for (int i = 1; i<=general.yoon(month); i++) {
+        for (int i = 1; i<=general.yoon(month,year); i++) {
             Matcher regexMatcher;
             Log.v("mealparsemth_html", i + "");
 
@@ -228,7 +249,7 @@ public class Meallib extends Thread {
 
                 if (regexMatcher.end() + 1 <= j)//지정 값이 0 이상인지 확인
                     parsed[2][i] = sb.toString().substring(
-                            regexMatcher.end() + 1, j);
+                            regexMatcher.end() + 1, j).replace("</div>","");
 
                 j = regexMatcher.start();
             }

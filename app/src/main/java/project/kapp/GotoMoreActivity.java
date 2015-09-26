@@ -1,11 +1,9 @@
 package project.kapp;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBarActivity;
 import android.support.v7.widget.Toolbar;
-import android.widget.FrameLayout;
 
 /**
  * Created by FullOfOrange on 15. 9. 20..
