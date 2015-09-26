@@ -1,11 +1,8 @@
 package project.kapp;
 
-<<<<<<< HEAD
-=======
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
->>>>>>> 115904b1da48c4f0510c2e9b7d5970d9efcbfd0d
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.widget.RecyclerView;
@@ -64,7 +61,6 @@ public class BScheduleFragment extends Fragment implements View.OnClickListener{
     }
 
     public void ClickViewAnimation(View view){
-        view = 
 
         view.setAnimation(TabOutAnima);
     }
