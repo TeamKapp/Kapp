@@ -50,6 +50,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
         removefiles();
 
         view = inflater.inflate(R.layout.f_rice, container, false);
+        outputmanage(pd,pm,py,false);
 
         taskStartmanager(py, pm,true);
 
