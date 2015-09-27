@@ -53,7 +53,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
         outputmanage(pd,pm,py,false);
 
         taskStartmanager(py, pm,true);
-
+        outputmanage(pd,pm,py,true);
         Button yest = (Button) view.findViewById(R.id.next_day);
         yest.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
