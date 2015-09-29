@@ -27,7 +27,6 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
     String kongjugopath ="/sdcard/Android/kongjugoappData/";
 
     Calendar cal = Calendar.getInstance();
-    static Boolean[] ran = new Boolean[12];
 
 
     int pd = cal.get(Calendar.DATE);
@@ -53,7 +52,8 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
         view = inflater.inflate(R.layout.f_rice, container, false);
         outputmanage(pd,pm,py,false);
 
-
+        taskStartmanager(py, pm,true);
+        outputmanage(pd,pm,py,true);
         Button yest = (Button) view.findViewById(R.id.next_day);
         yest.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
@@ -76,7 +76,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
                     }
                 }
                 if(pd>23&&c){
-                    taskStartmanager(py, pm);
+                    taskStartmanager(py, pm,false);
                     c=false;
                 }
                 outputmanage(pd,pm,py,b);
@@ -123,17 +123,18 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
         tv.setText(year+"년 "+(month+1)+"월 "+date+"일");
    }
 
-Meallib ml = null;
-    void taskStartmanager(int myear, int nimonth){
-        nimonth++;
-        if(nimonth == 12){
-            nimonth =1;
-            myear++;
-        }
-        else{
-            nimonth++;
-        }
+Meallib ml = new Meallib();
 
+    void taskStartmanager(int myear, int nimonth, boolean starting){
+        nimonth++;
+        if(!starting) {
+            if (nimonth == 12) {
+                nimonth = 1;
+                myear++;
+            } else {
+                nimonth++;
+            }
+        }
         ml = new Meallib(address + "&schYm=" + myear + adds0tomonth(nimonth), nimonth, myear);
         netload nl = new netload();
         Context ct = getActivity();

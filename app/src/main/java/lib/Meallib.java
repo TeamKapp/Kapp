@@ -27,6 +27,9 @@ public class Meallib extends Thread {
         this.year =year;
         address = addr;
     }
+    public Meallib(){
+
+    }
 
     public void run() {
         netload nl = new netload();
