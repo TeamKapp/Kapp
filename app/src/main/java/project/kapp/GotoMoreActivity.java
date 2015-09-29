@@ -27,7 +27,7 @@ public class GotoMoreActivity extends ActionBarActivity{
         int getFragmentNum = getIntent().getExtras().getInt("FragmentNum");
         if(getFragmentNum==0){
             BScheduleFragment bScheduleFragment = new BScheduleFragment();
-            fragmentTransaction.add(R.id.moreframe, bScheduleFragment);
+            fragmentTransaction.add(R.id.moreframe, bScheduleFragment).commit();
         }
         else if(getFragmentNum==1){
             WordFragment wordFragment = new WordFragment();
