@@ -3,7 +3,6 @@ package lib;
 import android.os.Environment;
 import android.util.Log;
 
-import net.htmlparser.jericho.Element;
 import net.htmlparser.jericho.HTMLElementName;
 import net.htmlparser.jericho.Source;
 
