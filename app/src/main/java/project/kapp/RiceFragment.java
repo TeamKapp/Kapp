@@ -65,9 +65,9 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
                     b =false;
                 } else {
                     b =true;
-                    if (pm == 12) {
+                    if (pm == 11) {//month값은 기본적으로 -1되어있음
                         pd = 1;
-                        pm = 1;
+                        pm = 0;
                         py++;
                     } else {
                         pd = 1;
@@ -85,6 +85,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
         Button toda = (Button) view.findViewById(R.id.today_date);
         toda.setOnClickListener(new View.OnClickListener() {
             public void onClick(View view) {
+                py = cal.get(Calendar.YEAR);
                 pd = cal.get(Calendar.DATE);
                 pm = cal.get(Calendar.MONTH);
                 outputmanage(pd,pm,py,false);
@@ -125,7 +126,7 @@ public class RiceFragment extends Fragment implements View.OnClickListener {
 Meallib ml = new Meallib();
 
     void taskStartmanager(int myear, int nimonth, boolean starting){
-        nimonth++;
+        nimonth++;//미리 달에 1을 더하고 시작한다. 우리가 기본적으로 쓰는 달을 사용.
         if(!starting) {
             if (nimonth == 12) {
                 nimonth = 1;
