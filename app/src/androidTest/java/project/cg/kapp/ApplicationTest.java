@@ -1,4 +1,4 @@
-package project.anonymous.kapp;
+package project.cg.kapp;
 
 import android.app.Application;
 import android.test.ApplicationTestCase;

@@ -3,13 +3,9 @@ package lib;
 import android.os.Environment;
 import android.util.Log;
 
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 import net.htmlparser.jericho.HTMLElementName;
 import net.htmlparser.jericho.Source;
-
+//기달
 import java.io.IOException;
 import java.net.URL;
 import java.util.StringTokenizer;
@@ -34,7 +30,7 @@ public class Meallib extends Thread {
 
     }
 
-    public void run() {
+    public void run() {//실행은 되게 해줄게
         netload nl = new netload();
         html = nl.loadhtml(address);
         Log.i("server Check","proc"+html);

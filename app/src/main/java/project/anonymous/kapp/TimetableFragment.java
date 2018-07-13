@@ -37,8 +37,8 @@ public class TimetableFragment extends Fragment {
     public SimpleCursorAdapter TableAdapter_timetable=null;
     Spinner timetable_spinner;
     String[] item_timetable = {"학년반을 선택하세요",
-            "1학년1반","1학년2반","1학년3반","1학년4반","1학년5반","1학년6반","1학년7반","1학년8반","1학년9반",
-            "2학년1반","2학년2반","2학년3반","2학년4반","2학년5반","2학년6반","2학년7반","2학년8반","2학년9반",
+            "1학년1반","1학년2반","1학년3반","1학년4반","1학년5반","1학년6반","1학년7반","1학년8반",
+            "2학년1반","2학년2반","2학년3반","2학년4반","2학년5반","2학년6반","2학년7반","2학년8반",
             "3학년1반","3학년2반","3학년3반","3학년4반","3학년5반","3학년6반","3학년7반","3학년8반","3학년9반"};
     String[] name_timetable = new String[] {"set","class1","class2","class3","class4","class5","class6","class7"};
 
@@ -154,7 +154,7 @@ public class TimetableFragment extends Fragment {
             case 39: string = "threei"; break;
             default: string = ""; break;
         }
-        cursor_timetable=db_timetable.rawQuery("Select * from "+ string +" where day='시간표'",null);
+        cursor_timetable=db_timetable.rawQuery("Select * from '"+ string +"' where day='시간표'",null);//않이..
         getActivity().startManagingCursor(cursor_timetable);
         final GridView timetable_gridview=(GridView)view.findViewById(R.id.tt_gridview);
         TableAdapter_timetable=new SimpleCursorAdapter(timetable_gridview.getContext(), R.layout.v_tt_list, cursor_timetable, name_timetable,num_timetable);
