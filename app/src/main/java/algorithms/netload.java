@@ -1,4 +1,4 @@
-package lib;
+package algorithms;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

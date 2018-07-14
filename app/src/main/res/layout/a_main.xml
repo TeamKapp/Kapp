@@ -16,16 +16,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:elevation="4dp">
-        <Button
-            android:id="@+id/main_rice_btn"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="4dp"
-            android:background="@drawable/s_tabbtnstate"
-            android:textStyle="bold"
-            android:text="급식"
-            android:textColor="@color/blue"/>
+
         <Button
             android:id="@+id/main_ttable_btn"
             android:layout_width="wrap_content"

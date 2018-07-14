@@ -1,4 +1,4 @@
-package lib;
+package algorithms;
 
 import java.util.Calendar;
 

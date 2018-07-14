@@ -2,13 +2,13 @@ package project.anonymous.kapp;
 
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.ActionBarActivity;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 /**
  * Created by FullOfOrange on 15. 9. 20..
  */
-public class GotoMoreActivity extends ActionBarActivity{
+public class GotoMoreActivity extends AppCompatActivity{
 
     private Toolbar toolbar;
     String getFragment;
