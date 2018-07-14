@@ -10,14 +10,14 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 
-/**
- * 06.05 문제 발생(ActionBarActivity 관련)
- * -> ActionBarActivity는 deprecated이므로,
- * AppCompatActivity로 변경하여 사용할 것.
- * 출처 -> http://apphappy.tistory.com/10
- */
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
+public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+    /*
+     * 18.06.05 문제 발생(ActionBarActivity 관련)
+     * -> ActionBarActivity는 deprecated이므로,
+     * AppCompatActivity로 변경하여 사용할 것.
+     * 출처 -> http://apphappy.tistory.com/10
+     */
     Toolbar toolbar;
     Button  ttablebtn, ddaybtn, morebtn;
     ViewPager pager;
