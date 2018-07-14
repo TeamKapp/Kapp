@@ -13,8 +13,8 @@ import android.widget.TextView;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import lib.netload;
-import lib.wordlib;
+import algorithms.netload;
+import algorithms.wordlib;
 
 public class WordFragment extends Fragment {
 
